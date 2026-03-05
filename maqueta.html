@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Empresa | Climatización & Refacciones</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Colores extraídos exactamente del logo proporcionado */
+            --brand-blue: #283C86; 
+            --brand-dark: #1A2859;
+            --brand-light: #E9EDF8;
+            --brand-accent: #4568DC;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #f8fafc; 
+        }
+
+        .title-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .text-brand { color: var(--brand-blue); }
+        .bg-brand { background-color: var(--brand-blue); }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--brand-dark), var(--brand-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- MENÚ DINÁMICO --- */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--brand-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- ESTÉTICA CORPORATIVA (Bordes menos redondeados, sombras elegantes) --- */
+        .corporate-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0; 
+            border-radius: 0.75rem; /* rounded-xl en lugar de 3xl */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .corporate-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 12px 24px -5px rgba(40, 60, 134, 0.12); /* Sombra basada en tu azul */
+            transform: translateY(-4px); /* Levantamiento más sutil y profesional */
+        }
+
+        /* Zoom sutil para imágenes */
+        .corporate-card:hover .hover-zoom {
+            transform: scale(1.05); /* Sin rotación, solo acercamiento */
+        }
+        .hover-zoom {
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- CINTILLA INFINITA REPARADA --- */
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: white;
+            padding: 2rem 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+        }
+        .ticker-track {
+            display: inline-flex;
+            width: max-content;
+            animation: scroll-ticker 40s linear infinite;
+        }
+        @keyframes scroll-ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .brand-logo {
+            height: 35px;
+            object-fit: contain;
+            margin: 0 4rem;
+            filter: grayscale(100%) opacity(50%);
+            transition: all 0.4s ease;
+        }
+        .brand-logo:hover {
+            filter: grayscale(0%) opacity(100%);
+        }
+
+        /* Animaciones Flotantes Más Suaves */
+        .float-slow { animation: float 8s ease-in-out infinite; }
+        .float-fast { animation: float 5s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); } /* Menor distancia para mayor realismo */
+        }
+
+        /* Botones Corporativos */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand-blue));
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(40, 60, 134, 0.25);
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 60, 134, 0.35);
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-accent));
+        }
+
+        /* FAQ Accordion */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-checkbox:checked ~ .faq-answer { max-height: 300px; }
+        .faq-checkbox:checked ~ .faq-question .faq-icon { transform: rotate(180deg); color: var(--brand-blue); }
+
+        /* ─── HAMBURGER ANIMATION ─── */
+        #menu-btn.open .ham-bar:nth-child(1){ transform: rotate(45deg) translate(5px, 5px); }
+        #menu-btn.open .ham-bar:nth-child(2){ opacity:0; transform: scaleX(0); }
+        #menu-btn.open .ham-bar:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+
+        /* ─── DRAWER ACTIVE STATE ─── */
+        #mobile-menu.is-open                       { pointer-events:auto; }
+        #mobile-menu.is-open #mob-backdrop         { opacity:1; pointer-events:auto; }
+        #mobile-menu.is-open #mob-drawer           { transform:translateX(0); }
+
+        /* ─── RESPONSIVE GLOBAL ─── */
+        @media (max-width:1023px){
+            /* Ocultar nav de escritorio */
+            .hidden.lg\:flex { display:none !important; }
+        }
+
+        @media (max-width:767px){
+            /* Hero */
+            section.min-h-\[90vh\]  { min-height:auto; padding-top:5rem; padding-bottom:2.5rem; }
+            .text-5xl.md\:text-7xl  { font-size:2.25rem !important; line-height:1.1 !important; }
+            .text-lg                 { font-size:0.95rem; }
+
+            /* Hero botones: full-width en mobile */
+            .flex.flex-wrap.gap-4 a,
+            .flex.flex-wrap.gap-4 button { width:100%; justify-content:center; }
+
+            /* Ticker más compacto */
+            .ticker-container        { padding:0.75rem 0; }
+            .brand-logo              { height:26px; margin:0 2rem; }
+
+            /* Nosotros — imágenes */
+            .grid.grid-cols-2.gap-4  { grid-template-columns:1fr 1fr; }
+            .grid.grid-cols-2.gap-4 img { height:9rem; object-fit:cover; border-radius:0.5rem; width:100%; }
+
+            /* Servicios — apiladas */
+            .md\:grid-cols-3.gap-8 .corporate-card { transform:none !important; }
+
+            /* Proceso — 1 col */
+            section .md\:grid-cols-3.gap-8.relative { grid-template-columns:1fr !important; gap:1.5rem; }
+            .hidden.md\:block.absolute.top-8         { display:none !important; }
+
+            /* Minisplits */
+            section.min-h-\[85vh\]  { min-height:auto; }
+            .float-slow, .float-fast { animation:none; }
+            .max-w-md                { max-width:100%; }
+
+            /* Catálogo — 2 cols */
+            .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Phone IA */
+            .w-\[260px\]            { width:200px; }
+
+            /* Testimonios — 1 col */
+            .md\:grid-cols-3.gap-6   { grid-template-columns:1fr !important; }
+
+            /* Contacto mapa */
+            .corporate-card.h-\[400px\] { height:240px !important; }
+
+            /* Footer */
+            footer .flex.flex-col.md\:flex-row { flex-direction:column !important; align-items:center; gap:1rem; }
+        }
+
+        @media (max-width:480px){
+            .text-5xl.md\:text-7xl  { font-size:1.9rem !important; }
+            /* Catálogo — 1 col en muy pequeño */
+            .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- ==========================================
+         1. NAVEGACIÓN
+    =========================================== -->
+    <nav class="fixed w-full z-50 glass-header border-b border-slate-200" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <img src="" alt="Logo" class="h-30 md:h-20 object-contain">
+            </div>
+
+            <div class="hidden lg:flex space-x-10 text-[13px] font-bold text-slate-600 uppercase tracking-widest">
+                <a href="#nosotros" class="nav-link hover:text-brand">Nosotros</a>
+                <a href="#servicios" class="nav-link hover:text-brand">Servicios</a>
+                <a href="#minisplits" class="nav-link hover:text-brand">Equipos</a>
+                <a href="#catalogo" class="nav-link hover:text-brand">Refacciones</a>
+                <a href="#contacto" class="nav-link hover:text-brand">Contacto</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/529931999269" target="_blank" class="btn-primary text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">Cotizar Ahora</span>
+                    <span class="sm:hidden">Cotizar</span>
+                </a>
+                <!-- Botón hamburguesa — solo visible en mobile -->
+                <button id="menu-btn" aria-label="Abrir menú"
+                    class="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg border border-slate-200 bg-white shadow-sm gap-[5px] focus:outline-none">
+                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300 origin-center"></span>
+                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300"></span>
+                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300 origin-center"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ════ MOBILE DRAWER ════ -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
+        <div id="mob-backdrop"
+             class="absolute inset-0 bg-slate-900/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="mob-drawer"
+             class="absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl flex flex-col
+                    translate-x-full transition-transform duration-300 ease-in-out">
+
+            <!-- Cabecera del drawer -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
+                <span class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Navegación</span>
+                <button id="menu-close"
+                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 hover:bg-slate-200 transition text-slate-600">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Links -->
+            <nav class="flex flex-col px-4 py-6 gap-1 flex-1 overflow-y-auto">
+                <a href="#nosotros"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
+                    <i class="fas fa-building text-brand w-4 text-center text-xs"></i> Nosotros</a>
+                <a href="#servicios"  class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
+                    <i class="fas fa-tools text-brand w-4 text-center text-xs"></i> Servicios</a>
+                <a href="#minisplits" class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
+                    <i class="fas fa-snowflake text-brand w-4 text-center text-xs"></i> Equipos</a>
+                <a href="#catalogo"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
+                    <i class="fas fa-boxes text-brand w-4 text-center text-xs"></i> Refacciones</a>
+                <a href="#contacto"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
+                    <i class="fas fa-map-marker-alt text-brand w-4 text-center text-xs"></i> Contacto</a>
+            </nav>
+
+            <!-- CTA footer del drawer -->
+            <div class="px-4 pb-8 pt-2 border-t border-slate-100">
+                <a href="https://wa.me/529931999269" target="_blank"
+                   class="btn-primary w-full text-white py-3.5 font-bold text-sm flex items-center justify-center gap-2 rounded-lg">
+                    <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         2. HERO SECTION
+    =========================================== -->
+    <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-white">
+        <!-- Decoración de fondo sobria -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 skew-x-12 translate-x-32 border-l border-slate-100"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 relative z-10 items-center">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md mb-6">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-slate-700 text-[10px] font-bold uppercase tracking-widest">Disponibilidad Inmediata en Villahermosa</span>
+                </div>
+                <h1 class="text-[2rem] sm:text-5xl md:text-7xl font-black title-font leading-[1.1] text-slate-900 mb-6">
+                    Domina el <br>
+                    clima con <br>
+                    <span class="text-brand">Presicion</span>
+                </h1>
+                <p class="text-lg text-slate-500 max-w-lg leading-relaxed mb-8 font-medium">
+                    Especialistas en suministro industrial de equipos de aire acondicionado, refacciones originales y proyectos de ingeniería térmica.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#catalogo" class="btn-primary text-white px-8 py-3.5 font-bold text-sm flex items-center gap-2">
+                        Explorar Inventario <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#minisplits" class="bg-white text-slate-700 border border-slate-300 rounded-lg px-8 py-3.5 font-bold text-sm hover:bg-slate-50 transition-all flex items-center gap-2">
+                        <i class="fas fa-snowflake text-brand"></i> Venta de Equipos
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative hidden lg:block" data-aos="fade-left" data-aos-duration="1200">
+                <div class="relative z-10">
+                    <img src="https://airclimcor.com/wp-content/uploads/2025/01/tecnica-especialista.png">
+                </div>
+                <div class="absolute -bottom-6 -left-8 bg-white p-5 rounded-xl shadow-xl border border-slate-100 z-20 float-slow flex items-center gap-4">
+                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white text-lg shadow-inner">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div>
+                        <p class="text-slate-900 font-black text-sm">Garantía Directa</p>
+                        <p class="text-slate-500 text-[10px] uppercase tracking-widest font-bold">100% Originales</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         3. CINTILLA INFINITA DE MARCAS
+    =========================================== -->
+    <div class="ticker-container">
+        <div class="ticker-track">
+            <!-- Set 1 -->
+            <img src="https://mirage.mx/wp-content/uploads/job-manager-uploads/company_logo/2020/10/Mirage-Logo.png" alt="Mirage" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_of_the_Carrier_Corporation.svg/330px-Logo_of_the_Carrier_Corporation.svg.png" alt="Carrier" class="brand-logo">
+            <img src="https://pcbqro.com/wp-content/uploads/2019/04/LOGO-TRANE.png" alt="Trane" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Samsung_old_logo_before_year_2015.svg/1280px-Samsung_old_logo_before_year_2015.svg.png" alt="Samsung" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/LG_logo_%282014%29.svg/960px-LG_logo_%282014%29.svg.png" alt="LG" class="brand-logo">
+            <img src="https://homeclimates.com/wp-content/uploads/2025/04/york-logo-2.png" alt="York" class="brand-logo">
+            <!-- Set 2 -->
+            <img src="https://mirage.mx/wp-content/uploads/job-manager-uploads/company_logo/2020/10/Mirage-Logo.png" alt="Mirage" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_of_the_Carrier_Corporation.svg/330px-Logo_of_the_Carrier_Corporation.svg.png" alt="Carrier" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Trane_logo.svg/512px-Trane_logo.svg.png" alt="Trane" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Samsung_old_logo_before_year_2015.svg/1280px-Samsung_old_logo_before_year_2015.svg.png" alt="Samsung" class="brand-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/LG_logo_%282014%29.svg/960px-LG_logo_%282014%29.svg.png" alt="LG" class="brand-logo">
+            <img src="https://homeclimates.com/wp-content/uploads/2025/04/york-logo-2.png" alt="York" class="brand-logo">
+        </div>
+    </div>
+
+    <!-- ==========================================
+         4. NOSOTROS
+    =========================================== -->
+    <section id="nosotros" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-up">
+                    <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.4em] mb-4">Perfil Corporativo</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold title-font text-slate-900 mb-6 leading-tight">
+                        Respaldo Industrial en <span class="text-brand">cada proyecto.</span>
+                    </h3>
+                    <p class="text-slate-600 mb-8 leading-relaxed text-lg">
+                        Con más de una década operando en el sureste mexicano, no solo despachamos piezas; somos aliados estratégicos. Aportamos soluciones integrales para que constructoras, industrias y hogares cuenten con el respaldo de un inventario masivo.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="corporate-card p-6 border-l-4 border-l-brand">
+                            <p class="text-4xl font-black text-slate-900 mb-1">+10</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Años de Experiencia</p>
+                        </div>
+                        <div class="corporate-card p-6 border-l-4 border-l-brand">
+                            <p class="text-4xl font-black text-brand mb-1">2</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Sucursales Físicas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                    <img src="https://www.herporefrigeracionyclimas.com/wp-content/uploads/2023/08/tipos-de-aire-acondicionado-industrial-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
+                    <img src="https://mantenimientoaireacondicionadocdmx.com/wp-content/uploads/2022/06/tecnico-reparando-aire-acondicionado-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         5. SERVICIOS ESPECIALIZADOS
+    =========================================== -->
+    <section id="servicios" class="py-24 bg-slate-50 border-y border-slate-200 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-4xl md:text-5xl font-black title-font text-slate-900 mb-4">División de Servicios</h3>
+                <p class="text-slate-600 max-w-xl mx-auto">Soporte técnico y comercial diseñado para evitar paros operativos por altas temperaturas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors">
+                        <i class="fas fa-tools text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900">Mantenimiento</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Programas preventivos y correctivos para equipos MiniSplit, Paquete y Chillers.</p>
+                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
+                        <li><i class="fas fa-check text-brand mr-2"></i> Limpieza con químicos especiales</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i> Revisión de presión y amperaje</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 2 (Highlight) -->
+                <div class="corporate-card p-8 group border-b-4 border-b-brand shadow-md transform md:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center mb-6 text-white shadow-inner">
+                        <i class="fas fa-drafting-compass text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900">Ingeniería Térmica</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Desarrollo de proyectos llave en mano para naves industriales y plazas comerciales.</p>
+                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
+                        <li><i class="fas fa-check text-brand mr-2"></i> Cálculo de carga térmica</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i> Diseño e instalación de ductería</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors">
+                        <i class="fas fa-warehouse text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-slate-900">Suministro B2B</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Venta por mayoreo para técnicos, contratistas y desarrolladoras de vivienda.</p>
+                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
+                        <li><i class="fas fa-check text-brand mr-2"></i> Tabuladores especiales</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i> Logística a pie de obra</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         6. PROCESO DE TRABAJO
+    =========================================== -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-4">Protocolo de Atención</h2>
+                <p class="text-slate-500">Procesos estandarizados para garantizar eficiencia operativa.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-px bg-slate-200 z-0"></div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">01</div>
+                    <h4 class="text-base font-bold mb-2">Requerimiento</h4>
+                    <p class="text-sm text-slate-500 px-4">Contacto vía plataforma o WhatsApp. Especificación técnica de la refacción o equipo.</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-brand rounded-lg flex items-center justify-center text-xl text-white shadow-md border border-brand mb-6 font-black title-font">02</div>
+                    <h4 class="text-base font-bold mb-2">Validación & Cotización</h4>
+                    <p class="text-sm text-slate-500 px-4">Análisis de stock en tiempo real y asignación de presupuesto con alternativas de marca.</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">03</div>
+                    <h4 class="text-base font-bold mb-2">Despacho / Ejecución</h4>
+                    <p class="text-sm text-slate-500 px-4">Entrega en mostrador o despliegue de cuadrilla técnica para instalación en sitio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         7. MEGA SECCIÓN MINISPLITS (EQUIPOS)
+    =========================================== -->
+    <section id="minisplits" class="min-h-[85vh] py-20 bg-slate-50 px-6 relative flex items-center overflow-hidden border-t border-slate-200">
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-4 py-1.5 bg-slate-800 text-white rounded-md text-[10px] font-bold uppercase tracking-widest mb-6">
+                    División de Equipos Nuevos
+                </div>
+                <h3 class="text-4xl md:text-5xl font-black title-font text-slate-900 mb-4 leading-tight tracking-tighter">
+                    Rendimiento Térmico <br>
+                    <span class="text-brand">Superior.</span>
+                </h3>
+                <p class="text-slate-600 max-w-2xl mx-auto text-base">
+                    Comercialización e instalación de unidades Minisplit estándar e Inverter. Diseñados para soportar las exigencias climáticas de Tabasco con eficiencia energética.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Textos -->
+                <div data-aos="fade-right" data-aos-delay="100" class="order-2 lg:order-1">
+                    <ul class="space-y-4 mb-8">
+                        <li class="corporate-card p-5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-brand">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Tecnología Inverter</h4>
+                                <p class="text-xs text-slate-500 mt-1">Reducción comprobada de hasta un <strong class="text-brand">70% en consumo eléctrico</strong> frente a equipos convencionales.</p>
+                            </div>
+                        </li>
+                        <li class="corporate-card p-5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Instalación Normada</h4>
+                                <p class="text-xs text-slate-500 mt-1">Ejecución limpia con vacío profundo para garantizar hermeticidad y máxima vida útil del compresor.</p>
+                            </div>
+                        </li>
+                        <li class="corporate-card p-5 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-brand">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Garantía Extendida</h4>
+                                <p class="text-xs text-slate-500 mt-1">Soporte directo de fábrica, ofreciendo cobertura superior a 5 años en componentes críticos.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="https://wa.me/529931999269" class="btn-primary inline-flex items-center gap-3 text-white px-8 py-3.5 font-bold shadow-lg">
+                        <i class="fab fa-whatsapp text-lg"></i> Cotizar Equipos
+                    </a>
+                </div>
+
+                <!-- Imagen FLOTANDO 3D Suave -->
+                <div class="relative order-1 lg:order-2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-slate-300 rounded-[100%] blur-xl"></div>
+                    
+                    <div class="relative float-slow z-20 w-full max-w-md">
+                        <img src="https://www.trane.com/content/dam/Trane/Commercial/lar/argentina/products/mini-splits/dx_inverter/MS_DX_inverter.png">
+                        
+                        <div class="absolute top-4 -right-4 bg-white px-4 py-2 rounded-lg shadow-md border border-slate-200 flex items-center gap-2">
+                            <span class="text-brand"><i class="fas fa-wind"></i></span>
+                            <span class="text-xs font-bold text-slate-800">Ultra Silencioso</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         8. CATÁLOGO DE REFACCIONES
+    =========================================== -->
+    <section id="catalogo" class="py-24 px-6 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div data-aos="fade-up">
+                    <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Disponibilidad en Almacén</h2>
+                    <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Catálogo de Componentes</h3>
+                    <p class="text-slate-500 text-sm max-w-xl">Amplio inventario de piezas originales para mantenimiento correctivo.</p>
+                </div>
+            </div>
+
+            <!-- Grid Masivo -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                
+                <!-- 1. Tarjetas -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=300" alt="Tarjetas" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Tarjetas Electrónicas</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Módulos Universales • Displays</p>
+                </div>
+
+                <!-- 2. Motores -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="50">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=300" alt="Motores" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Motores</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Condensador • Evaporador</p>
+                </div>
+
+                <!-- 3. Filtros -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-filter text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Filtros Deshidratadores</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Soldables • Roscables</p>
+                </div>
+
+                <!-- 4. Aspas -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="150">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-fan text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Aspas de Ventilación</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Plásticas • Metálicas</p>
+                </div>
+
+                <!-- 5. Cuchillas -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-cut text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Cuchillas de Licuadora</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Oster • 4 Navajas • 6 Navajas</p>
+                </div>
+
+                <!-- 6. Accesorios -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="250">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-blender text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Refacciones Menores</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Vasos • Carbones Man/Oster</p>
+                </div>
+
+                <!-- 7. Capacitores -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-battery-full text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Capacitores</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Arranque • Trabajo Continúo</p>
+                </div>
+
+                <!-- 8. Gases -->
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="350">
+                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
+                        <i class="fas fa-flask text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Insumos Básicos</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Gases Refrigerantes • Tubería</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         9. SECCIÓN IA / TECNOLOGÍA
+    =========================================== -->
+    <section class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Textura corporativa oscura -->
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded mb-5">
+                    <i class="fas fa-microchip text-blue-400 text-xs"></i>
+                    <span class="text-slate-200 text-[10px] font-bold uppercase tracking-widest">Integración Tecnológica</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black title-font mb-4 leading-tight">
+                    Gestión automatizada mediante <span class="text-blue-400">Asistente IA.</span>
+                </h2>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+                    Optimizamos nuestra atención a clientes industriales y técnicos. Nuestro sistema en WhatsApp procesa cotizaciones de refacciones, levanta pedidos y agenda mantenimientos de forma automatizada 24/7.
+                </p>
+                <a href="https://wa.me/529931999269" class="btn-primary text-white px-6 py-3 font-bold shadow-lg inline-block text-sm">
+                    Probar Sistema Automatizado <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="relative flex justify-center" data-aos="fade-left">
+                <!-- Phone Mockup -->
+                <div class="w-[260px] bg-slate-50 rounded-[2rem] border-[4px] border-slate-700 shadow-2xl overflow-hidden relative float-slow">
+                    <div class="absolute top-0 inset-x-0 h-4 bg-slate-700 rounded-b-lg w-24 mx-auto z-20"></div>
+                    <div class="bg-white h-[450px] p-4 pt-8 flex flex-col gap-3 relative">
+                        <div class="border-b border-slate-100 pb-2 flex items-center gap-3">
+                            <div class="w-7 h-7 bg-brand rounded-md flex items-center justify-center text-white text-[10px]"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <p class="text-slate-900 text-xs font-bold">Sistema IA</p>
+                                <p class="text-green-500 text-[9px] font-medium">Operativo</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 p-2.5 rounded-xl rounded-tr-sm text-xs text-slate-700 self-end max-w-[85%] border border-slate-200 shadow-sm">
+                            ¿Cotización de filtro deshidratador 1/4?
+                        </div>
+                        <div class="bg-brand p-2.5 rounded-xl rounded-tl-sm text-xs text-white self-start max-w-[90%] shadow-md">
+                            Confirmado. Modelo FDEK-082 disponible en sucursal matriz. ¿Preparamos orden de salida?
+                        </div>
+                        <div class="bg-slate-100 p-2.5 rounded-xl rounded-tr-sm text-xs text-slate-700 self-end max-w-[85%] border border-slate-200 shadow-sm mt-auto">
+                            Aprobar orden.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         10. TESTIMONIOS
+    =========================================== -->
+    <section class="py-24 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-black title-font text-slate-900 mb-3">Respaldo Comercial</h2>
+                <p class="text-slate-500 text-sm">Empresas e ingenieros que confían en nuestra capacidad de respuesta.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Testimonio 1 -->
+                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex text-yellow-500 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"Excelente surtido de gases y capacitores. La implementación del bot para cotizaciones agiliza muchísimo nuestro trabajo en campo."</p>
+                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">RM</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Roberto M.</p>
+                            <p class="text-[9px] text-slate-500 uppercase">Técnico Independiente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex text-yellow-500 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"Adjudicamos la instalación de unidades Inverter para nuestras oficinas. Ejecución técnica impecable, respetando normas de seguridad."</p>
+                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">CS</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Constructora SUR</p>
+                            <p class="text-[9px] text-slate-500 uppercase">Cliente Corporativo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex text-yellow-500 mb-3 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"El inventario de tarjetas electrónicas y refacciones universales es robusto. Proveedor clave para paros de mantenimiento industrial."</p>
+                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">CV</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Ing. Carlos V.</p>
+                            <p class="text-[9px] text-slate-500 uppercase">Jefatura de Mantenimiento</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         11. PREGUNTAS FRECUENTES
+    =========================================== -->
+    <section class="py-24 px-6 bg-white border-y border-slate-200">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-2xl font-black title-font text-slate-900">Dudas Operativas</h2>
+            </div>
+
+            <div class="space-y-3" data-aos="fade-up">
+                <div class="corporate-card">
+                    <input type="checkbox" id="faq1" class="hidden faq-checkbox">
+                    <label for="faq1" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-800 text-sm">¿Cobertura logística en Tabasco?</span>
+                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
+                    </label>
+                    <div class="faq-answer bg-slate-50 px-4">
+                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Suministramos a diferentes municipios del estado sujeto a volumen de orden comercial. Consulte logística específica vía asesores.</p>
+                    </div>
+                </div>
+
+                <div class="corporate-card">
+                    <input type="checkbox" id="faq2" class="hidden faq-checkbox">
+                    <label for="faq2" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-800 text-sm">¿Políticas de Garantía en Minisplits?</span>
+                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
+                    </label>
+                    <div class="faq-answer bg-slate-50 px-4">
+                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Respaldados por lineamientos del fabricante. Generalmente incluye 1 año en componentes y hasta 5 a 10 años en el bloque del compresor.</p>
+                    </div>
+                </div>
+
+                <div class="corporate-card">
+                    <input type="checkbox" id="faq3" class="hidden faq-checkbox">
+                    <label for="faq3" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-800 text-sm">¿Métodos de Facturación y Pago?</span>
+                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
+                    </label>
+                    <div class="faq-answer bg-slate-50 px-4">
+                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Se aceptan transferencias interbancarias, tarjetas de crédito institucionales y habilitamos líneas de crédito B2B tras evaluación financiera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         12. CONTACTO Y MAPA
+    =========================================== -->
+    <section id="contacto" class="py-24 px-6 bg-slate-50 text-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl font-black title-font mb-6">Puntos de Venta</h2>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="corporate-card p-5 flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-blue-50 border border-blue-100 rounded text-brand flex items-center justify-center shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm mb-1">Matriz: 18 de Marzo</p>
+                                <p class="text-xs text-slate-500">Av. Revolución #1310, Col. 18 de Marzo<br>CP 86140, Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+
+                        <div class="corporate-card p-5 flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-blue-50 border border-blue-100 rounded text-brand flex items-center justify-center shrink-0">
+                                <i class="fas fa-store-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm mb-1">Sucursal Tamulté</p>
+                                <p class="text-xs text-slate-500">Manuel Doblado 209, Col. Tamulté<br>CP 86150, Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="corporate-card p-6 bg-white">
+                        <h4 class="font-bold text-[10px] uppercase tracking-widest text-slate-400 mb-3">Línea de Atención</h4>
+                        <a href="tel:+529931999269" class="text-xl font-black text-slate-900 hover:text-brand transition flex items-center gap-3 mb-2">
+                            <i class="fas fa-phone-alt text-brand text-sm"></i> 993 199 9269
+                        </a>
+                        <a href="mailto:contacto@tuempresa.com" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> contacto@tuempresa.com</a>
+                    </div>
+                </div>
+
+                <div class="corporate-card h-[400px] p-1.5" data-aos="fade-left">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.8562304859067!2d-92.94605908511674!3d17.98555818772392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ee7d88e0b677a1%3A0x6b1076b429d89284!2sTuEmpresa!5e0!3m2!1ses-419!2smx!4v1677654321098!5m2!1ses-419!2smx" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; border-radius: 0.5rem;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         13. FOOTER
+    =========================================== -->
+    <footer class="bg-slate-900 py-12 px-6 text-white">
+        <div class="max-w-7xl mx-auto border-t border-slate-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-inner">
+                    <img src="imagen-removebg-preview.png" alt="Logo" class="h-8 object-contain">
+                </div>
+                
+                <div class="flex space-x-3">
+                    <a href="#" class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-brand transition text-xs"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/529931999269" class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-green-600 transition text-xs"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center flex flex-col items-center">
+                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-widest mb-1">
+                    © 2026 Tu Empresa. Todos los derechos reservados.
+                </p>
+                <p class="text-slate-600 text-[8px] uppercase tracking-widest flex items-center gap-1">
+                    Desarrollo Tecnológico por <span class="text-slate-400 font-bold">Aryse AI</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Animaciones más sobrias y rápidas
+        AOS.init({
+            once: true,
+            mirror: false,
+            offset: 50,
+            duration: 600,
+            easing: 'ease-out-cubic',
+        });
+
+        // Navbar interaction
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // ─── HAMBURGER / DRAWER ───────────────────────
+        const menuBtn   = document.getElementById('menu-btn');
+        const mobMenu   = document.getElementById('mobile-menu');
+        const backdrop  = document.getElementById('mob-backdrop');
+        const closeBtn  = document.getElementById('menu-close');
+        const mobLinks  = document.querySelectorAll('.mob-link');
+
+        function openNav(){
+            mobMenu.classList.add('is-open');
+            menuBtn.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeNav(){
+            mobMenu.classList.remove('is-open');
+            menuBtn.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', () =>
+            mobMenu.classList.contains('is-open') ? closeNav() : openNav()
+        );
+        closeBtn.addEventListener('click', closeNav);
+        backdrop.addEventListener('click', closeNav);
+        mobLinks.forEach(l => l.addEventListener('click', closeNav));
+        document.addEventListener('keydown', e => e.key === 'Escape' && closeNav());
+    </script>
+</body>
+</html>
