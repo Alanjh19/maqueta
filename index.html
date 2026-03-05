@@ -219,14 +219,166 @@
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* ─── HERO IMAGE SHADOW ─── */
+        .hero-img-shadow {
+            filter: drop-shadow(0 30px 60px rgba(40,60,134,0.22)) drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        }
+
+        /* ─── STAT COUNTER ─── */
+        .stat-counter { transition: color 0.3s; }
+
+        /* ─── CARD MEJORADO ─── */
+        .corporate-card {
+            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .corporate-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .corporate-card:hover::before { transform: scaleX(1); }
+
+        /* ─── SERVICE ICON HOVER ─── */
+        .service-icon-wrap {
+            transition: all 0.35s cubic-bezier(.22,.68,0,1.2);
+        }
+        .corporate-card:hover .service-icon-wrap {
+            transform: scale(1.12) rotate(-4deg);
+        }
+
+        /* ─── REFRIGERANT BADGE ─── */
+        .ref-badge {
+            transition: all 0.3s ease;
+        }
+        .corporate-card:hover .ref-badge {
+            transform: scale(1.08);
+        }
+
+        /* ─── TRUST STRIP ICON ─── */
+        .trust-icon {
+            transition: transform 0.4s cubic-bezier(.22,.68,0,1.2);
+        }
+        .trust-item:hover .trust-icon { transform: scale(1.2) translateY(-3px); }
+
+        /* ─── PROCESO LINE ─── */
+        .proceso-line {
+            position: absolute;
+            top: 2rem;
+            left: 25%;
+            right: 25%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--brand-blue), transparent);
+            opacity: 0.2;
+        }
+
+        /* ─── SECTION EYEBROW ─── */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--brand-blue);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .section-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--brand-blue);
+            display: block;
+        }
+
+        /* ─── FLOAT BADGE ─── */
+        @keyframes floatBadge {
+            0%,100% { transform: translateY(0) rotate(-2deg); }
+            50%      { transform: translateY(-8px) rotate(-2deg); }
+        }
+        .badge-float { animation: floatBadge 4s ease-in-out infinite; }
+        @keyframes floatBadge2 {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-6px); }
+        }
+        .badge-float2 { animation: floatBadge2 5s ease-in-out infinite; animation-delay: 1s; }
+
+        /* ─── BTN SHINE ─── */
+        .btn-primary { position: relative; overflow: hidden; }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: rgba(255,255,255,0.15);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::after { left: 125%; }
+
+        /* ─── WHATSAPP FLOTANTE ─── */
+        #wa-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(.22,.68,0,1.2);
+            text-decoration: none;
+        }
+        #wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+        #wa-float i { font-size: 1.6rem; color: white; }
+        @keyframes waPulse {
+            0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0); }
+            50%      { box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 0 0 10px rgba(37,211,102,0); }
+        }
+        #wa-float { animation: waPulse 3s ease-in-out infinite; }
+
+        /* ─── RESPONSIVE HERO FIX ─── */
+        @media (max-width: 1023px) {
+            #inicio .grid { grid-template-columns: 1fr !important; text-align: center; }
+            #inicio .flex.flex-wrap { justify-content: center; }
+            #inicio [data-aos="fade-left"] { order: -1; margin-bottom: 0; }
+            #inicio [data-aos="fade-right"] { order: 1; }
+        }
+        @media (max-width: 767px) {
+            #inicio [data-aos="fade-left"] img { max-width: 260px; margin: 0 auto; }
+            #inicio .absolute.-bottom-4 { position: relative !important; bottom: auto !important; left: auto !important; margin-top: 1rem; justify-content: center; }
+            #inicio .absolute.top-4 { display: none; }
+        }
     </style>
 </head>
 <body class="text-slate-800">
 
+    <!-- BARRA 24/7 -->
+    <div id="top-strip" class="w-full bg-gradient-to-r from-[#1A2859] to-[#283C86] text-white py-2 px-4 text-center z-[60] relative">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 md:gap-8">
+            <span class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"><i class="fas fa-circle text-green-400 text-[6px] animate-pulse"></i>Emergencias 24/7</span>
+            <span class="hidden sm:flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider"><i class="fas fa-phone-alt text-blue-300"></i>993 199 9269</span>
+            <span class="hidden lg:flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider"><i class="fas fa-truck text-blue-300"></i>Mismo día · Villahermosa</span>
+            <a href="https://wa.me/529931999269" target="_blank" class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider bg-white/20 hover:bg-white/30 px-3 py-0.5 rounded transition-all border border-white/20">
+                <i class="fab fa-whatsapp text-green-300 text-xs"></i>Cotizar
+            </a>
+        </div>
+    </div>
     <!-- ==========================================
          1. NAVEGACIÓN
     =========================================== -->
-    <nav class="fixed w-full z-50 glass-header border-b border-slate-200" id="navbar">
+    <nav class="fixed w-full z-[55] glass-header border-b border-slate-200" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
                 <img src="" alt="Logo" class="h-30 md:h-20 object-contain">
@@ -301,11 +453,19 @@
     <!-- ==========================================
          2. HERO SECTION
     =========================================== -->
-    <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-white">
-        <!-- Decoración de fondo sobria -->
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 skew-x-12 translate-x-32 border-l border-slate-100"></div>
+    <section id="inicio" class="relative min-h-screen flex items-center pt-36 overflow-hidden bg-white">
+        <!-- Decoraciones de fondo -->
+        <!-- Panel azul derecho -->
+        <div class="absolute top-0 right-0 w-[48%] h-full bg-gradient-to-br from-[#E9EDF8] to-[#dbe3f7] hidden lg:block"></div>
+        <!-- Círculo decorativo grande -->
+        <div class="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full border border-[#283C86]/8 hidden lg:block"></div>
+        <div class="absolute top-8 right-8 w-[380px] h-[380px] rounded-full border border-[#283C86]/6 hidden lg:block"></div>
+        <!-- Grid de puntos fondo izquierda -->
+        <div class="absolute inset-0 opacity-[0.025]" style="background-image:radial-gradient(circle,#283C86 1px,transparent 1px);background-size:28px 28px;"></div>
+        <!-- Línea diagonal decorativa -->
+        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#283C86]/20 to-transparent"></div>
         
-        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 relative z-10 items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 lg:gap-12 relative z-10 items-center">
             <div data-aos="fade-right">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md mb-6">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
@@ -329,11 +489,19 @@
                 </div>
             </div>
             
-            <div class="relative hidden lg:block" data-aos="fade-left" data-aos-duration="1200">
-                <div class="relative z-10">
-                    <img src="https://airclimcor.com/wp-content/uploads/2025/01/tecnica-especialista.png">
+            <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                <!-- Imagen hero: visible en todos los tamaños -->
+                <div class="relative z-10 flex justify-center lg:justify-end">
+                    <!-- Fondo decorativo geométrico detrás de la imagen -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+                        <div class="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[500px] lg:h-[500px] rounded-full bg-gradient-to-br from-[#E9EDF8] to-[#c8d4f0] opacity-60"></div>
+                    </div>
+                    <img src="https://airclimcor.com/wp-content/uploads/2025/01/tecnica-especialista.png"
+                         alt="Técnico especialista en climatización"
+                         class="relative z-10 w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[520px] drop-shadow-2xl"
+                         style="filter:drop-shadow(0 20px 50px rgba(40,60,134,0.18))">
                 </div>
-                <div class="absolute -bottom-6 -left-8 bg-white p-5 rounded-xl shadow-xl border border-slate-100 z-20 float-slow flex items-center gap-4">
+                <div class="absolute -bottom-4 left-4 lg:-bottom-6 lg:-left-8 bg-white p-4 lg:p-5 rounded-xl shadow-xl border border-slate-100 z-20 float-slow flex items-center gap-3 lg:gap-4">
                     <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white text-lg shadow-inner">
                         <i class="fas fa-check-double"></i>
                     </div>
@@ -342,10 +510,41 @@
                         <p class="text-slate-500 text-[10px] uppercase tracking-widest font-bold">100% Originales</p>
                     </div>
                 </div>
+                <!-- Badge extra: años -->
+                <div class="absolute top-4 -right-2 lg:top-6 lg:-right-6 bg-[#283C86] text-white p-3 lg:p-4 rounded-xl shadow-xl z-20 float-fast text-center">
+                    <p class="text-2xl lg:text-3xl font-black title-font leading-none">+10</p>
+                    <p class="text-[8px] lg:text-[9px] font-bold uppercase tracking-widest opacity-75 mt-0.5">Años</p>
+                </div>
             </div>
         </div>
     </section>
 
+
+    <!-- BANDA DE CONFIANZA -->
+    <div class="bg-[#1A2859] py-6 px-6" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-center">
+            <div class="flex flex-col items-center gap-1.5">
+                <i class="fas fa-shipping-fast text-2xl text-blue-300"></i>
+                <p class="text-xs font-black uppercase tracking-wider">Envío Mismo Día</p>
+                <p class="text-[10px] text-white/50">Zona metropolitana</p>
+            </div>
+            <div class="flex flex-col items-center gap-1.5">
+                <i class="fas fa-boxes text-2xl text-blue-300"></i>
+                <p class="text-xs font-black uppercase tracking-wider">+5,000 Piezas</p>
+                <p class="text-[10px] text-white/50">En inventario</p>
+            </div>
+            <div class="flex flex-col items-center gap-1.5">
+                <i class="fas fa-headset text-2xl text-blue-300"></i>
+                <p class="text-xs font-black uppercase tracking-wider">Soporte 24/7</p>
+                <p class="text-[10px] text-white/50">WhatsApp directo</p>
+            </div>
+            <div class="flex flex-col items-center gap-1.5">
+                <i class="fas fa-certificate text-2xl text-blue-300"></i>
+                <p class="text-xs font-black uppercase tracking-wider">Piezas Originales</p>
+                <p class="text-[10px] text-white/50">Garantía de fábrica</p>
+            </div>
+        </div>
+    </div>
     <!-- ==========================================
          3. CINTILLA INFINITA DE MARCAS
     =========================================== -->
@@ -383,14 +582,22 @@
                         Con más de una década operando en el sureste mexicano, no solo despachamos piezas; somos aliados estratégicos. Aportamos soluciones integrales para que constructoras, industrias y hogares cuenten con el respaldo de un inventario masivo.
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-6 mt-8">
-                        <div class="corporate-card p-6 border-l-4 border-l-brand">
-                            <p class="text-4xl font-black text-slate-900 mb-1">+10</p>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Años de Experiencia</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
+                            <p class="text-3xl font-black text-slate-900 mb-0.5 stat-counter" data-target="10" data-prefix="+">+10</p>
+                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Años</p>
                         </div>
-                        <div class="corporate-card p-6 border-l-4 border-l-brand">
-                            <p class="text-4xl font-black text-brand mb-1">2</p>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Sucursales Físicas</p>
+                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
+                            <p class="text-3xl font-black text-brand mb-0.5 stat-counter" data-target="2">2</p>
+                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Sucursales</p>
+                        </div>
+                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
+                            <p class="text-3xl font-black text-slate-900 mb-0.5 stat-counter" data-target="5000" data-prefix="+">+5k</p>
+                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Refacciones</p>
+                        </div>
+                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
+                            <p class="text-3xl font-black text-brand mb-0.5 stat-counter" data-target="24" data-suffix="h">24h</p>
+                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Respuesta</p>
                         </div>
                     </div>
                 </div>
@@ -416,7 +623,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Servicio 1 -->
                 <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
                         <i class="fas fa-tools text-lg"></i>
                     </div>
                     <h4 class="text-lg font-bold mb-3 text-slate-900">Mantenimiento</h4>
@@ -442,7 +649,7 @@
 
                 <!-- Servicio 3 -->
                 <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
                         <i class="fas fa-warehouse text-lg"></i>
                     </div>
                     <h4 class="text-lg font-bold mb-3 text-slate-900">Suministro B2B</h4>
@@ -467,7 +674,7 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 relative">
-                <div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-px bg-slate-200 z-0"></div>
+                <div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-px z-0 bg-gradient-to-r from-transparent via-[#283C86]/30 to-transparent"></div>
 
                 <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="0">
                     <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">01</div>
@@ -490,6 +697,33 @@
         </div>
     </section>
 
+
+    <!-- ==========================================
+         6b. LLAMADA A ACCIÓN URGENTE
+    =========================================== -->
+    <section class="py-16 px-6 bg-gradient-to-r from-[#1A2859] to-[#283C86] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8" data-aos="fade-up">
+            <div class="text-white text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/30 px-3 py-1 rounded-full mb-4">
+                    <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                    <span class="text-red-300 text-[10px] font-bold uppercase tracking-widest">Equipo sin frío · Paro de producción</span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-black title-font text-white mb-2">¿Tu equipo falló? <span class="text-blue-300">Respondemos hoy.</span></h3>
+                <p class="text-white/60 text-sm max-w-lg">Cuadrilla de diagnóstico disponible. Identificamos la falla y surtimos la refacción en el mismo servicio.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 shrink-0">
+                <a href="https://wa.me/529931999269" target="_blank"
+                   class="btn-primary text-white px-8 py-4 font-bold text-sm flex items-center gap-3 shadow-xl whitespace-nowrap">
+                    <i class="fab fa-whatsapp text-xl text-green-400"></i> Servicio de Emergencia
+                </a>
+                <a href="tel:+529931999269"
+                   class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 font-bold text-sm flex items-center gap-3 rounded-lg transition whitespace-nowrap">
+                    <i class="fas fa-phone-alt text-blue-300"></i> 993 199 9269
+                </a>
+            </div>
+        </div>
+    </section>
     <!-- ==========================================
          7. MEGA SECCIÓN MINISPLITS (EQUIPOS)
     =========================================== -->
@@ -655,6 +889,55 @@
         </div>
     </section>
 
+
+    <!-- ==========================================
+         8b. TIPOS DE REFRIGERANTE
+    =========================================== -->
+    <section class="py-20 px-6 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Gases Refrigerantes</h2>
+                <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Stock permanente de <span class="text-brand">refrigerantes</span></h3>
+                <p class="text-slate-500 text-sm max-w-xl mx-auto">Disponemos del gas correcto para cada equipo. Venta por cilindro o granel para técnicos y empresas.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 border-2 border-blue-100 flex items-center justify-center mb-4 group-hover:border-blue-400 transition-colors">
+                        <span class="text-lg font-black text-brand">R-22</span>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">Freón R-22</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Equipos residenciales<br>legacy</p>
+                </div>
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="80">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-green-50 border-2 border-green-100 flex items-center justify-center mb-4 group-hover:border-green-400 transition-colors">
+                        <span class="text-base font-black text-green-700">R-410A</span>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-410A</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">MiniSplit moderno<br>Sin cloro</p>
+                </div>
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="160">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-orange-50 border-2 border-orange-100 flex items-center justify-center mb-4 group-hover:border-orange-400 transition-colors">
+                        <span class="text-base font-black text-orange-700">R-404A</span>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-404A</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Refrigeración<br>comercial</p>
+                </div>
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="240">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-purple-50 border-2 border-purple-100 flex items-center justify-center mb-4 group-hover:border-purple-400 transition-colors">
+                        <span class="text-base font-black text-purple-700">R-32</span>
+                    </div>
+                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-32</h5>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Alta eficiencia<br>Inverter nueva gen.</p>
+                </div>
+            </div>
+            <div class="mt-8 corporate-card p-5 flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up">
+                <div class="w-10 h-10 shrink-0 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center justify-center text-yellow-600">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed"><strong class="text-slate-900">Nota técnica:</strong> La manipulación de gases refrigerantes requiere certificación. Nuestro personal calificado puede asistir en la carga y recuperación de refrigerante en sitio. Consulta el servicio de carga con equipo propio.</p>
+            </div>
+        </div>
+    </section>
     <!-- ==========================================
          9. SECCIÓN IA / TECNOLOGÍA
     =========================================== -->
@@ -847,7 +1130,7 @@
                         <a href="tel:+529931999269" class="text-xl font-black text-slate-900 hover:text-brand transition flex items-center gap-3 mb-2">
                             <i class="fas fa-phone-alt text-brand text-sm"></i> 993 199 9269
                         </a>
-                        <a href="mailto:contacto@tuempresa.com" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> contacto@tuempresa.com</a>
+                        <a href="mailto:ventas@tuempresa.com" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> ventas@tuempresa.com</a>
                     </div>
                 </div>
 
@@ -881,9 +1164,40 @@
                 </div>
             </div>
             
-            <div class="mt-8 text-center flex flex-col items-center">
+            <!-- Links del footer -->
+            <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800 pt-8 text-center">
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Empresa</p>
+                    <ul class="space-y-2">
+                        <li><a href="#nosotros" class="text-[10px] text-slate-400 hover:text-white transition">Nosotros</a></li>
+                        <li><a href="#servicios" class="text-[10px] text-slate-400 hover:text-white transition">Servicios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Productos</p>
+                    <ul class="space-y-2">
+                        <li><a href="#minisplits" class="text-[10px] text-slate-400 hover:text-white transition">Equipos</a></li>
+                        <li><a href="#catalogo" class="text-[10px] text-slate-400 hover:text-white transition">Refacciones</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Contacto</p>
+                    <ul class="space-y-2">
+                        <li><a href="tel:+529931999269" class="text-[10px] text-slate-400 hover:text-white transition">993 199 9269</a></li>
+                        <li><a href="https://wa.me/529931999269" class="text-[10px] text-slate-400 hover:text-white transition">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Horarios</p>
+                    <ul class="space-y-2">
+                        <li><p class="text-[10px] text-slate-400">Lun–Sab 8am–7pm</p></li>
+                        <li><p class="text-[10px] text-slate-400">Urgencias 24h</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-800 text-center flex flex-col items-center">
                 <p class="text-slate-500 text-[9px] font-bold uppercase tracking-widest mb-1">
-                    © 2026 Tu Empresa. Todos los derechos reservados.
+                    © 2026 Tu Empresa. División Climatización. Todos los derechos reservados.
                 </p>
                 <p class="text-slate-600 text-[8px] uppercase tracking-widest flex items-center gap-1">
                     Desarrollo Tecnológico por <span class="text-slate-400 font-bold">Aryse AI</span>
@@ -939,6 +1253,54 @@
         backdrop.addEventListener('click', closeNav);
         mobLinks.forEach(l => l.addEventListener('click', closeNav));
         document.addEventListener('keydown', e => e.key === 'Escape' && closeNav());
+
+        // ─── COUNTER ANIMATION ───────────────────────
+        function animateCounters() {
+            document.querySelectorAll('.stat-counter').forEach(function(el) {
+                var target = parseInt(el.dataset.target) || 0;
+                var prefix = el.dataset.prefix || '';
+                var suffix = el.dataset.suffix || '';
+                var start = 0;
+                var step = target / (1800 / 16);
+                var timer = setInterval(function() {
+                    start = Math.min(start + step, target);
+                    var display = target >= 1000
+                        ? (start >= 1000 ? Math.round(start/1000) + 'k' : Math.round(start))
+                        : Math.round(start);
+                    el.textContent = prefix + display + suffix;
+                    if (start >= target) clearInterval(timer);
+                }, 16);
+            });
+        }
+        var statEl = document.querySelector('.stat-counter');
+        if (statEl) {
+            var statObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { animateCounters(); statObs.disconnect(); }
+                });
+            }, { threshold: 0.4 });
+            statObs.observe(statEl.closest('section') || statEl);
+        }
+
+        // ─── ACTIVE NAV LINK ─────────────────────────
+        var sections = document.querySelectorAll('section[id]');
+        var navAnchors = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', function() {
+            var current = '';
+            sections.forEach(function(s) {
+                if (window.scrollY >= s.offsetTop - 120) current = s.id;
+            });
+            navAnchors.forEach(function(a) {
+                a.classList.remove('text-brand');
+                if (a.getAttribute('href') === '#' + current) a.classList.add('text-brand');
+            });
+        }, { passive: true });
+
     </script>
+
+    <!-- WhatsApp Flotante -->
+    <a id="wa-float" href="https://wa.me/529931999269" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>
