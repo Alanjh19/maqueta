@@ -71,17 +71,17 @@
         /* --- ESTÉTICA CORPORATIVA (Bordes menos redondeados, sombras elegantes) --- */
         .corporate-card {
             background-color: #ffffff;
-            border: 1px solid #e2e8f0; 
-            border-radius: 0.75rem; /* rounded-xl en lugar de 3xl */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #dde5f3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 18px -2px rgba(40,60,134,0.11), 0 2px 6px rgba(0,0,0,0.07);
+            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease, border-color 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         .corporate-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 12px 24px -5px rgba(40, 60, 134, 0.12); /* Sombra basada en tu azul */
-            transform: translateY(-4px); /* Levantamiento más sutil y profesional */
+            border-color: #b0c2e8;
+            box-shadow: 0 22px 44px -8px rgba(40,60,134,0.20), 0 6px 18px rgba(0,0,0,0.09);
+            transform: translateY(-5px);
         }
 
         /* Zoom sutil para imágenes */
@@ -159,79 +159,191 @@
         #mobile-menu.is-open #mob-drawer           { transform:translateX(0); }
 
         /* ─── RESPONSIVE GLOBAL ─── */
-        @media (max-width:1023px){
-            /* Ocultar nav de escritorio */
+        
+        /* ════════════════════════════════════════════
+           REVEAL ANIMATIONS — scroll-triggered
+        ════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(.22,.68,0,1.1), transform 0.7s cubic-bezier(.22,.68,0,1.1);
+            will-change: opacity, transform;
+        }
+        .reveal.from-left  { transform: translateX(-32px); }
+        .reveal.from-right { transform: translateX(32px); }
+        .reveal.from-scale { transform: scale(0.92) translateY(16px); }
+        .reveal.is-visible {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        .reveal.delay-1 { transition-delay: 0.10s; }
+        .reveal.delay-2 { transition-delay: 0.20s; }
+        .reveal.delay-3 { transition-delay: 0.30s; }
+        .reveal.delay-4 { transition-delay: 0.40s; }
+        .reveal.delay-5 { transition-delay: 0.50s; }
+
+        /* Parallax suave en mobile */
+        .para-slow {
+            transition: transform 0.1s linear;
+            will-change: transform;
+        }
+
+        /* ════════════════════════════════════════════
+           MOBILE RESPONSIVE
+        ════════════════════════════════════════════ */
+
+        /* Nav: altura de la barra interna */
+        #navbar { top: 0; }
+
+        @media (max-width:1023px) {
             .hidden.lg\:flex { display:none !important; }
         }
 
-        @media (max-width:767px){
+        @media (max-width:767px) {
             /* Hero */
-            section.min-h-\[90vh\]  { min-height:auto; padding-top:5rem; padding-bottom:2.5rem; }
-            .text-5xl.md\:text-7xl  { font-size:2.25rem !important; line-height:1.1 !important; }
-            .text-lg                 { font-size:0.95rem; }
+            #inicio { padding-top: 5.5rem !important; min-height: auto !important; padding-bottom: 2rem; }
+            #inicio .grid { grid-template-columns: 1fr !important; gap: 0 !important; text-align: center; }
+            #inicio .flex.flex-wrap { justify-content: center; }
+            #inicio [data-aos="fade-left" data-reveal="left"],
+            #inicio [data-reveal="left"] { order: -1; }
+            #inicio [data-aos="fade-right" data-reveal="right"],
+            #inicio [data-reveal="right"] { order: 1; }
+            #inicio [data-aos="fade-left" data-reveal="left"] img { max-width: 240px; margin: 0 auto; }
+            /* Badge flotante en mobile: relativo */
+            #inicio .absolute.-bottom-4 {
+                position: relative !important; bottom: auto !important; left: auto !important;
+                margin: 0.75rem auto 0; display: inline-flex;
+            }
+            #inicio .absolute.top-4 { display: none; }
 
-            /* Hero botones: full-width en mobile */
-            .flex.flex-wrap.gap-4 a,
-            .flex.flex-wrap.gap-4 button { width:100%; justify-content:center; }
+            /* Hero h1 */
+            .text-\[2rem\] { font-size: 1.85rem !important; }
 
-            /* Ticker más compacto */
-            .ticker-container        { padding:0.75rem 0; }
-            .brand-logo              { height:26px; margin:0 2rem; }
+            /* Botones hero full-width */
+            .flex.flex-wrap.gap-4 > a,
+            .flex.flex-wrap.gap-4 > button { width: 100%; justify-content: center; }
 
-            /* Nosotros — imágenes */
-            .grid.grid-cols-2.gap-4  { grid-template-columns:1fr 1fr; }
-            .grid.grid-cols-2.gap-4 img { height:9rem; object-fit:cover; border-radius:0.5rem; width:100%; }
+            /* Ticker */
+            .ticker-container { padding: 0.75rem 0; }
+            .brand-logo { height: 24px; margin: 0 1.75rem; }
 
-            /* Servicios — apiladas */
-            .md\:grid-cols-3.gap-8 .corporate-card { transform:none !important; }
+            /* Trust strip */
+            .trust-grid { grid-template-columns: repeat(2,1fr) !important; gap: 1rem !important; }
 
-            /* Proceso — 1 col */
-            section .md\:grid-cols-3.gap-8.relative { grid-template-columns:1fr !important; gap:1.5rem; }
-            .hidden.md\:block.absolute.top-8         { display:none !important; }
+            /* Nosotros imágenes */
+            .grid.grid-cols-2.gap-4 img { height: 8rem; }
+
+            /* Servicios — sin translate Y */
+            .md\:grid-cols-3.gap-8 .corporate-card { transform: none !important; }
+
+            /* Proceso */
+            .proceso-grid { grid-template-columns: 1fr !important; }
+            .proceso-line  { display: none !important; }
 
             /* Minisplits */
-            section.min-h-\[85vh\]  { min-height:auto; }
-            .float-slow, .float-fast { animation:none; }
-            .max-w-md                { max-width:100%; }
+            section.min-h-\[85vh\] { min-height: auto !important; }
+            .float-slow, .float-fast { animation: none; }
+            .max-w-md { max-width: 90%; }
 
-            /* Catálogo — 2 cols */
-            .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
+            /* Catálogo */
+            .grid.grid-cols-1.sm\:grid-cols-2 { grid-template-columns: repeat(2,1fr) !important; }
+            .grid.grid-cols-1.sm\:grid-cols-2 .corporate-card { padding: 0.75rem !important; }
+            .grid.grid-cols-1.sm\:grid-cols-2 .h-32 { height: 5rem; }
+
+            /* Stats 2 col */
+            .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
 
             /* Phone IA */
-            .w-\[260px\]            { width:200px; }
+            .w-\[260px\] { width: 200px; }
 
-            /* Testimonios — 1 col */
-            .md\:grid-cols-3.gap-6   { grid-template-columns:1fr !important; }
+            /* Testimonios */
+            .md\:grid-cols-3.gap-6 { grid-template-columns: 1fr !important; }
+
+            /* Gases grid */
+            .gases-grid { grid-template-columns: repeat(2,1fr) !important; }
 
             /* Contacto mapa */
-            .corporate-card.h-\[400px\] { height:240px !important; }
+            .corporate-card.h-\[400px\] { height: 220px !important; }
+            .grid.lg\:grid-cols-2.gap-12 { gap: 1.5rem; }
 
             /* Footer */
-            footer .flex.flex-col.md\:flex-row { flex-direction:column !important; align-items:center; gap:1rem; }
+            .footer-links-grid { grid-template-columns: repeat(2,1fr) !important; }
         }
 
-        @media (max-width:480px){
-            .text-5xl.md\:text-7xl  { font-size:1.9rem !important; }
-            /* Catálogo — 1 col en muy pequeño */
-            .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
-                grid-template-columns: 1fr !important;
-            }
+        @media (max-width: 480px) {
+            .grid.grid-cols-1.sm\:grid-cols-2 { grid-template-columns: 1fr !important; }
+            .gases-grid { grid-template-columns: 1fr 1fr !important; }
         }
 
-        /* ─── HERO IMAGE SHADOW ─── */
-        .hero-img-shadow {
-            filter: drop-shadow(0 30px 60px rgba(40,60,134,0.22)) drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        /* ════════════════════════════════════════════
+           PROFESSIONAL DETAILS
+        ════════════════════════════════════════════ */
+
+        /* Scroll progress bar */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
+            z-index: 1000;
+            transition: width 0.1s linear;
         }
 
-        /* ─── STAT COUNTER ─── */
-        .stat-counter { transition: color 0.3s; }
-
-        /* ─── CARD MEJORADO ─── */
-        .corporate-card {
-            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease, border-color 0.35s ease;
+        /* Section divider — onda sutil */
+        .wave-divider {
+            display: block;
+            overflow: hidden;
+            line-height: 0;
         }
+        .wave-divider svg { display: block; }
+
+        /* Noise texture overlay sutil en secciones azules */
+        .noise-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.06;
+        }
+
+        /* Line separator decorativo */
+        .deco-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(40,60,134,0.18), transparent);
+            margin: 0;
+        }
+
+        /* Badges flotantes extra suaves */
+        @keyframes floatA { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-9px) rotate(-1deg)} }
+        @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        .badge-float  { animation: floatA 4s ease-in-out infinite; }
+        .badge-float2 { animation: floatB 5s ease-in-out 1s infinite; }
+
+        /* Hover zoom img */
+        .hover-zoom { transition: transform 0.6s cubic-bezier(.22,.68,0,1.1); }
+        .corporate-card:hover .hover-zoom { transform: scale(1.06); }
+
+        /* Service icon */
+        .service-icon-wrap { transition: all 0.35s cubic-bezier(.22,.68,0,1.2); }
+        .corporate-card:hover .service-icon-wrap { transform: scale(1.12) rotate(-5deg); }
+
+        /* BTN shine */
+        .btn-primary { position: relative; overflow: hidden; }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -80%;
+            width: 50%; height: 200%;
+            background: rgba(255,255,255,0.14);
+            transform: skewX(-18deg);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+        .btn-primary:hover::after { left: 130%; }
+
+        /* Top line en cards al hover */
         .corporate-card::before {
             content: '';
             position: absolute;
@@ -245,140 +357,83 @@
         }
         .corporate-card:hover::before { transform: scaleX(1); }
 
-        /* ─── SERVICE ICON HOVER ─── */
-        .service-icon-wrap {
-            transition: all 0.35s cubic-bezier(.22,.68,0,1.2);
-        }
-        .corporate-card:hover .service-icon-wrap {
-            transform: scale(1.12) rotate(-4deg);
-        }
-
-        /* ─── REFRIGERANT BADGE ─── */
-        .ref-badge {
-            transition: all 0.3s ease;
-        }
-        .corporate-card:hover .ref-badge {
-            transform: scale(1.08);
+        /* Float animations */
+        .float-slow { animation: float 8s ease-in-out infinite; }
+        .float-fast  { animation: float 5s ease-in-out infinite; }
+        @keyframes float {
+            0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
         }
 
-        /* ─── TRUST STRIP ICON ─── */
-        .trust-icon {
-            transition: transform 0.4s cubic-bezier(.22,.68,0,1.2);
-        }
-        .trust-item:hover .trust-icon { transform: scale(1.2) translateY(-3px); }
-
-        /* ─── PROCESO LINE ─── */
-        .proceso-line {
-            position: absolute;
-            top: 2rem;
-            left: 25%;
-            right: 25%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--brand-blue), transparent);
-            opacity: 0.2;
-        }
-
-        /* ─── SECTION EYEBROW ─── */
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 10px;
-            font-weight: 800;
-            color: var(--brand-blue);
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        .section-eyebrow::before {
-            content: '';
-            width: 24px;
-            height: 2px;
-            background: var(--brand-blue);
-            display: block;
-        }
-
-        /* ─── FLOAT BADGE ─── */
-        @keyframes floatBadge {
-            0%,100% { transform: translateY(0) rotate(-2deg); }
-            50%      { transform: translateY(-8px) rotate(-2deg); }
-        }
-        .badge-float { animation: floatBadge 4s ease-in-out infinite; }
-        @keyframes floatBadge2 {
-            0%,100% { transform: translateY(0); }
-            50%      { transform: translateY(-6px); }
-        }
-        .badge-float2 { animation: floatBadge2 5s ease-in-out infinite; animation-delay: 1s; }
-
-        /* ─── BTN SHINE ─── */
-        .btn-primary { position: relative; overflow: hidden; }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -75%;
-            width: 50%; height: 200%;
-            background: rgba(255,255,255,0.15);
-            transform: skewX(-20deg);
-            transition: left 0.5s ease;
-        }
-        .btn-primary:hover::after { left: 125%; }
-
-        /* ─── WHATSAPP FLOTANTE ─── */
+        /* WA flotante */
         #wa-float {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            z-index: 999;
-            width: 56px;
-            height: 56px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.15);
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+            width: 56px; height: 56px; background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.12);
             transition: all 0.3s cubic-bezier(.22,.68,0,1.2);
             text-decoration: none;
         }
-        #wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+        #wa-float:hover { transform: scale(1.12); }
         #wa-float i { font-size: 1.6rem; color: white; }
         @keyframes waPulse {
-            0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0); }
-            50%      { box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 0 0 10px rgba(37,211,102,0); }
+            0%,100%{ box-shadow: 0 6px 24px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,0); }
+            50%    { box-shadow: 0 6px 24px rgba(37,211,102,.45), 0 0 0 10px rgba(37,211,102,0); }
         }
         #wa-float { animation: waPulse 3s ease-in-out infinite; }
 
-        /* ─── RESPONSIVE HERO FIX ─── */
-        @media (max-width: 1023px) {
-            #inicio .grid { grid-template-columns: 1fr !important; text-align: center; }
-            #inicio .flex.flex-wrap { justify-content: center; }
-            #inicio [data-aos="fade-left"] { order: -1; margin-bottom: 0; }
-            #inicio [data-aos="fade-right"] { order: 1; }
+        /* Stat counter */
+        .stat-counter { transition: color 0.3s; }
+
+        /* Section eyebrow */
+        .section-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 10px; font-weight: 800; color: var(--brand-blue);
+            letter-spacing: .35em; text-transform: uppercase; margin-bottom: 1rem;
         }
-        @media (max-width: 767px) {
-            #inicio [data-aos="fade-left"] img { max-width: 260px; margin: 0 auto; }
-            #inicio .absolute.-bottom-4 { position: relative !important; bottom: auto !important; left: auto !important; margin-top: 1rem; justify-content: center; }
-            #inicio .absolute.top-4 { display: none; }
+        .section-eyebrow::before {
+            content: ''; width: 24px; height: 2px;
+            background: var(--brand-blue); display: block;
         }
+
+        /* Proceso connector */
+        .proceso-connector {
+            position: absolute; top: 2rem; left: 16.67%; right: 16.67%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(40,60,134,.25), transparent);
+        }
+
+        /* Glass card para CTA oscura */
+        .glass-dark {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+        }
+    
+
+        /* ─── DOT NAV ─── */
+        .dot-link { display: block; }
+        .dot-link.active { background-color: var(--brand-blue) !important; transform: scale(1.5); }
+
+        /* ─── DOT NAV ─── */
+        .dot-link { display: block; }
+        .dot-link.active { background-color: var(--brand-blue) !important; transform: scale(1.6); box-shadow: 0 0 0 3px rgba(40,60,134,0.18); }
     </style>
 </head>
 <body class="text-slate-800">
+    <div id="progress-bar"></div>
 
-    <!-- BARRA 24/7 -->
-    <div id="top-strip" class="w-full bg-gradient-to-r from-[#1A2859] to-[#283C86] text-white py-2 px-4 text-center z-[60] relative">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 md:gap-8">
-            <span class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"><i class="fas fa-circle text-green-400 text-[6px] animate-pulse"></i>Emergencias 24/7</span>
-            <span class="hidden sm:flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider"><i class="fas fa-phone-alt text-blue-300"></i>993 199 9269</span>
-            <span class="hidden lg:flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider"><i class="fas fa-truck text-blue-300"></i>Mismo día · Villahermosa</span>
-            <a href="https://wa.me/529931999269" target="_blank" class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider bg-white/20 hover:bg-white/30 px-3 py-0.5 rounded transition-all border border-white/20">
-                <i class="fab fa-whatsapp text-green-300 text-xs"></i>Cotizar
-            </a>
-        </div>
-    </div>
     <!-- ==========================================
-         1. NAVEGACIÓN
+         1. NAVEGACIÓN (unified)
     =========================================== -->
     <nav class="fixed w-full z-[55] glass-header border-b border-slate-200" id="navbar">
+        <!-- Barra 24/7 — solo escritorio -->
+        <div class="hidden md:flex w-full bg-gradient-to-r from-[#1A2859] to-[#283C86] text-white py-1.5 px-4 items-center justify-center gap-6">
+            <span class="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest"><i class="fas fa-circle text-green-400 text-[5px] animate-pulse"></i>Emergencias 24/7</span>
+            <span class="w-px h-3 bg-white/20"></span>
+            <span class="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider"><i class="fas fa-phone-alt text-blue-300 text-[8px]"></i>993 199 9269</span>
+            <span class="w-px h-3 bg-white/20"></span>
+            <span class="hidden lg:flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider"><i class="fas fa-truck text-blue-300 text-[8px]"></i>Envío mismo día · Villahermosa</span>
+        </div>
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
                 <img src="" alt="Logo" class="h-30 md:h-20 object-contain">
@@ -453,7 +508,7 @@
     <!-- ==========================================
          2. HERO SECTION
     =========================================== -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-36 overflow-hidden bg-white">
+    <section id="inicio" class="relative min-h-screen flex items-center pt-28 md:pt-36 overflow-hidden bg-white">
         <!-- Decoraciones de fondo -->
         <!-- Panel azul derecho -->
         <div class="absolute top-0 right-0 w-[48%] h-full bg-gradient-to-br from-[#E9EDF8] to-[#dbe3f7] hidden lg:block"></div>
@@ -466,7 +521,7 @@
         <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#283C86]/20 to-transparent"></div>
         
         <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 lg:gap-12 relative z-10 items-center">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" data-reveal="right">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md mb-6">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                     <span class="text-slate-700 text-[10px] font-bold uppercase tracking-widest">Disponibilidad Inmediata en Villahermosa</span>
@@ -489,7 +544,7 @@
                 </div>
             </div>
             
-            <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+            <div class="relative" data-aos="fade-left" data-reveal="left" data-aos-duration="1000">
                 <!-- Imagen hero: visible en todos los tamaños -->
                 <div class="relative z-10 flex justify-center lg:justify-end">
                     <!-- Fondo decorativo geométrico detrás de la imagen -->
@@ -521,8 +576,8 @@
 
 
     <!-- BANDA DE CONFIANZA -->
-    <div class="bg-[#1A2859] py-6 px-6" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-center">
+    <div class="bg-[#1A2859] py-6 px-6" data-aos="fade-up" data-reveal>
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-center trust-grid">
             <div class="flex flex-col items-center gap-1.5">
                 <i class="fas fa-shipping-fast text-2xl text-blue-300"></i>
                 <p class="text-xs font-black uppercase tracking-wider">Envío Mismo Día</p>
@@ -545,6 +600,7 @@
             </div>
         </div>
     </div>
+    <div class="deco-line"></div>
     <!-- ==========================================
          3. CINTILLA INFINITA DE MARCAS
     =========================================== -->
@@ -573,7 +629,7 @@
     <section id="nosotros" class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-up">
+                <div data-aos="fade-up" data-reveal>
                     <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.4em] mb-4">Perfil Corporativo</h2>
                     <h3 class="text-4xl md:text-5xl font-extrabold title-font text-slate-900 mb-6 leading-tight">
                         Respaldo Industrial en <span class="text-brand">cada proyecto.</span>
@@ -582,7 +638,7 @@
                         Con más de una década operando en el sureste mexicano, no solo despachamos piezas; somos aliados estratégicos. Aportamos soluciones integrales para que constructoras, industrias y hogares cuenten con el respaldo de un inventario masivo.
                     </p>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 stats-grid">
                         <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
                             <p class="text-3xl font-black text-slate-900 mb-0.5 stat-counter" data-target="10" data-prefix="+">+10</p>
                             <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Años</p>
@@ -602,7 +658,7 @@
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                <div class="grid grid-cols-2 gap-4" data-aos="fade-left" data-reveal="left">
                     <img src="https://www.herporefrigeracionyclimas.com/wp-content/uploads/2023/08/tipos-de-aire-acondicionado-industrial-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
                     <img src="https://mantenimientoaireacondicionadocdmx.com/wp-content/uploads/2022/06/tecnico-reparando-aire-acondicionado-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
                 </div>
@@ -615,14 +671,14 @@
     =========================================== -->
     <section id="servicios" class="py-24 bg-slate-50 border-y border-slate-200 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
                 <h3 class="text-4xl md:text-5xl font-black title-font text-slate-900 mb-4">División de Servicios</h3>
                 <p class="text-slate-600 max-w-xl mx-auto">Soporte técnico y comercial diseñado para evitar paros operativos por altas temperaturas.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Servicio 1 -->
-                <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="0">
+                <div class="corporate-card p-8 group" data-aos="fade-up" data-reveal data-aos-delay="0">
                     <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
                         <i class="fas fa-tools text-lg"></i>
                     </div>
@@ -635,7 +691,7 @@
                 </div>
 
                 <!-- Servicio 2 (Highlight) -->
-                <div class="corporate-card p-8 group border-b-4 border-b-brand shadow-md transform md:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="corporate-card p-8 group border-b-4 border-b-brand shadow-md transform md:-translate-y-2" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
                     <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center mb-6 text-white shadow-inner">
                         <i class="fas fa-drafting-compass text-lg"></i>
                     </div>
@@ -648,7 +704,7 @@
                 </div>
 
                 <!-- Servicio 3 -->
-                <div class="corporate-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="corporate-card p-8 group" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
                     <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
                         <i class="fas fa-warehouse text-lg"></i>
                     </div>
@@ -668,27 +724,27 @@
     =========================================== -->
     <section class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
                 <h2 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-4">Protocolo de Atención</h2>
                 <p class="text-slate-500">Procesos estandarizados para garantizar eficiencia operativa.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 relative">
-                <div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-px z-0 bg-gradient-to-r from-transparent via-[#283C86]/30 to-transparent"></div>
+            <div class="grid md:grid-cols-3 gap-8 relative proceso-grid">
+                <div class="hidden md:block proceso-connector"></div>
 
-                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="0">
+                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="0">
                     <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">01</div>
                     <h4 class="text-base font-bold mb-2">Requerimiento</h4>
                     <p class="text-sm text-slate-500 px-4">Contacto vía plataforma o WhatsApp. Especificación técnica de la refacción o equipo.</p>
                 </div>
 
-                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
                     <div class="w-16 h-16 mx-auto bg-brand rounded-lg flex items-center justify-center text-xl text-white shadow-md border border-brand mb-6 font-black title-font">02</div>
                     <h4 class="text-base font-bold mb-2">Validación & Cotización</h4>
                     <p class="text-sm text-slate-500 px-4">Análisis de stock en tiempo real y asignación de presupuesto con alternativas de marca.</p>
                 </div>
 
-                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
                     <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">03</div>
                     <h4 class="text-base font-bold mb-2">Despacho / Ejecución</h4>
                     <p class="text-sm text-slate-500 px-4">Entrega en mostrador o despliegue de cuadrilla técnica para instalación en sitio.</p>
@@ -703,7 +759,7 @@
     =========================================== -->
     <section class="py-16 px-6 bg-gradient-to-r from-[#1A2859] to-[#283C86] relative overflow-hidden">
         <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:24px 24px;"></div>
-        <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8" data-aos="fade-up">
+        <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8" data-aos="fade-up" data-reveal>
             <div class="text-white text-center md:text-left">
                 <div class="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/30 px-3 py-1 rounded-full mb-4">
                     <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
@@ -729,7 +785,7 @@
     =========================================== -->
     <section id="minisplits" class="min-h-[85vh] py-20 bg-slate-50 px-6 relative flex items-center overflow-hidden border-t border-slate-200">
         <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
                 <div class="inline-block px-4 py-1.5 bg-slate-800 text-white rounded-md text-[10px] font-bold uppercase tracking-widest mb-6">
                     División de Equipos Nuevos
                 </div>
@@ -744,7 +800,7 @@
 
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Textos -->
-                <div data-aos="fade-right" data-aos-delay="100" class="order-2 lg:order-1">
+                <div data-aos="fade-right" data-reveal="right" data-aos-delay="100" data-stagger="1" class="order-2 lg:order-1">
                     <ul class="space-y-4 mb-8">
                         <li class="corporate-card p-5 flex items-start gap-4">
                             <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-brand">
@@ -781,7 +837,7 @@
                 </div>
 
                 <!-- Imagen FLOTANDO 3D Suave -->
-                <div class="relative order-1 lg:order-2 flex justify-center" data-aos="fade-left" data-aos-delay="200">
+                <div class="relative order-1 lg:order-2 flex justify-center" data-aos="fade-left" data-reveal="left" data-aos-delay="200" data-stagger="2">
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-slate-300 rounded-[100%] blur-xl"></div>
                     
                     <div class="relative float-slow z-20 w-full max-w-md">
@@ -803,7 +859,7 @@
     <section id="catalogo" class="py-24 px-6 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div data-aos="fade-up">
+                <div data-aos="fade-up" data-reveal>
                     <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Disponibilidad en Almacén</h2>
                     <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Catálogo de Componentes</h3>
                     <p class="text-slate-500 text-sm max-w-xl">Amplio inventario de piezas originales para mantenimiento correctivo.</p>
@@ -814,7 +870,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 
                 <!-- 1. Tarjetas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="0">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="0">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=300" alt="Tarjetas" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
                     </div>
@@ -823,7 +879,7 @@
                 </div>
 
                 <!-- 2. Motores -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="50">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="50">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=300" alt="Motores" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
                     </div>
@@ -832,7 +888,7 @@
                 </div>
 
                 <!-- 3. Filtros -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="100">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-filter text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -841,7 +897,7 @@
                 </div>
 
                 <!-- 4. Aspas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="150">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="150">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-fan text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -850,7 +906,7 @@
                 </div>
 
                 <!-- 5. Cuchillas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="200">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-cut text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -859,7 +915,7 @@
                 </div>
 
                 <!-- 6. Accesorios -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="250">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="250">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-blender text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -868,7 +924,7 @@
                 </div>
 
                 <!-- 7. Capacitores -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="300">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="300" data-stagger="3">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-battery-full text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -877,7 +933,7 @@
                 </div>
 
                 <!-- 8. Gases -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-aos-delay="350">
+                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="350">
                     <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
                         <i class="fas fa-flask text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
                     </div>
@@ -895,34 +951,34 @@
     =========================================== -->
     <section class="py-20 px-6 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12" data-aos="fade-up">
+            <div class="text-center mb-12" data-aos="fade-up" data-reveal>
                 <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Gases Refrigerantes</h2>
                 <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Stock permanente de <span class="text-brand">refrigerantes</span></h3>
                 <p class="text-slate-500 text-sm max-w-xl mx-auto">Disponemos del gas correcto para cada equipo. Venta por cilindro o granel para técnicos y empresas.</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="0">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 gases-grid">
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="0">
                     <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 border-2 border-blue-100 flex items-center justify-center mb-4 group-hover:border-blue-400 transition-colors">
                         <span class="text-lg font-black text-brand">R-22</span>
                     </div>
                     <h5 class="font-bold text-slate-900 text-sm mb-1">Freón R-22</h5>
                     <p class="text-[10px] text-slate-500 uppercase tracking-wide">Equipos residenciales<br>legacy</p>
                 </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="80">
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="80">
                     <div class="w-14 h-14 mx-auto rounded-full bg-green-50 border-2 border-green-100 flex items-center justify-center mb-4 group-hover:border-green-400 transition-colors">
                         <span class="text-base font-black text-green-700">R-410A</span>
                     </div>
                     <h5 class="font-bold text-slate-900 text-sm mb-1">R-410A</h5>
                     <p class="text-[10px] text-slate-500 uppercase tracking-wide">MiniSplit moderno<br>Sin cloro</p>
                 </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="160">
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="160">
                     <div class="w-14 h-14 mx-auto rounded-full bg-orange-50 border-2 border-orange-100 flex items-center justify-center mb-4 group-hover:border-orange-400 transition-colors">
                         <span class="text-base font-black text-orange-700">R-404A</span>
                     </div>
                     <h5 class="font-bold text-slate-900 text-sm mb-1">R-404A</h5>
                     <p class="text-[10px] text-slate-500 uppercase tracking-wide">Refrigeración<br>comercial</p>
                 </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-aos-delay="240">
+                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="240">
                     <div class="w-14 h-14 mx-auto rounded-full bg-purple-50 border-2 border-purple-100 flex items-center justify-center mb-4 group-hover:border-purple-400 transition-colors">
                         <span class="text-base font-black text-purple-700">R-32</span>
                     </div>
@@ -930,7 +986,7 @@
                     <p class="text-[10px] text-slate-500 uppercase tracking-wide">Alta eficiencia<br>Inverter nueva gen.</p>
                 </div>
             </div>
-            <div class="mt-8 corporate-card p-5 flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up">
+            <div class="mt-8 corporate-card p-5 flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up" data-reveal>
                 <div class="w-10 h-10 shrink-0 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center justify-center text-yellow-600">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
@@ -946,7 +1002,7 @@
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" data-reveal="right">
                 <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded mb-5">
                     <i class="fas fa-microchip text-blue-400 text-xs"></i>
                     <span class="text-slate-200 text-[10px] font-bold uppercase tracking-widest">Integración Tecnológica</span>
@@ -962,7 +1018,7 @@
                 </a>
             </div>
             
-            <div class="relative flex justify-center" data-aos="fade-left">
+            <div class="relative flex justify-center" data-aos="fade-left" data-reveal="left">
                 <!-- Phone Mockup -->
                 <div class="w-[260px] bg-slate-50 rounded-[2rem] border-[4px] border-slate-700 shadow-2xl overflow-hidden relative float-slow">
                     <div class="absolute top-0 inset-x-0 h-4 bg-slate-700 rounded-b-lg w-24 mx-auto z-20"></div>
@@ -994,14 +1050,14 @@
     =========================================== -->
     <section class="py-24 bg-slate-50 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
                 <h2 class="text-3xl font-black title-font text-slate-900 mb-3">Respaldo Comercial</h2>
                 <p class="text-slate-500 text-sm">Empresas e ingenieros que confían en nuestra capacidad de respuesta.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Testimonio 1 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="0">
                     <div class="flex text-yellow-500 mb-3 text-xs">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -1016,7 +1072,7 @@
                 </div>
 
                 <!-- Testimonio 2 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
                     <div class="flex text-yellow-500 mb-3 text-xs">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -1031,7 +1087,7 @@
                 </div>
 
                 <!-- Testimonio 3 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
                     <div class="flex text-yellow-500 mb-3 text-xs">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -1053,11 +1109,11 @@
     =========================================== -->
     <section class="py-24 px-6 bg-white border-y border-slate-200">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-10" data-aos="fade-up">
+            <div class="text-center mb-10" data-aos="fade-up" data-reveal>
                 <h2 class="text-2xl font-black title-font text-slate-900">Dudas Operativas</h2>
             </div>
 
-            <div class="space-y-3" data-aos="fade-up">
+            <div class="space-y-3" data-aos="fade-up" data-reveal>
                 <div class="corporate-card">
                     <input type="checkbox" id="faq1" class="hidden faq-checkbox">
                     <label for="faq1" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
@@ -1100,7 +1156,7 @@
     <section id="contacto" class="py-24 px-6 bg-slate-50 text-slate-900">
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
+                <div data-aos="fade-right" data-reveal="right">
                     <h2 class="text-3xl font-black title-font mb-6">Puntos de Venta</h2>
                     
                     <div class="space-y-4 mb-8">
@@ -1130,11 +1186,11 @@
                         <a href="tel:+529931999269" class="text-xl font-black text-slate-900 hover:text-brand transition flex items-center gap-3 mb-2">
                             <i class="fas fa-phone-alt text-brand text-sm"></i> 993 199 9269
                         </a>
-                        <a href="mailto:ventas@tuempresa.com" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> ventas@tuempresa.com</a>
+                        <a href="/cdn-cgi/l/email-protection#77011219031604370302121a07051204165914181a" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> <span class="__cf_email__" data-cfemail="c2b4a7acb6a3b182b6b7a7afb2b0a7b1a3eca1adaf">[email&#160;protected]</span></a>
                     </div>
                 </div>
 
-                <div class="corporate-card h-[400px] p-1.5" data-aos="fade-left">
+                <div class="corporate-card h-[400px] p-1.5" data-aos="fade-left" data-reveal="left">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.8562304859067!2d-92.94605908511674!3d17.98555818772392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ee7d88e0b677a1%3A0x6b1076b429d89284!2sTuEmpresa!5e0!3m2!1ses-419!2smx!4v1677654321098!5m2!1ses-419!2smx" 
                         width="100%" 
@@ -1207,96 +1263,120 @@
     </footer>
 
     <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Animaciones más sobrias y rápidas
-        AOS.init({
-            once: true,
-            mirror: false,
-            offset: 50,
-            duration: 600,
-            easing: 'ease-out-cubic',
+    // ── AOS init ──────────────────────────────────
+    AOS.init({ once: true, mirror: false, offset: 60, duration: 650, easing: 'ease-out-cubic' });
+
+    // ── PROGRESS BAR ──────────────────────────────
+    const progressBar = document.getElementById('progress-bar');
+    function updateProgress() {
+        const scrolled = window.scrollY;
+        const total    = document.body.scrollHeight - window.innerHeight;
+        if (progressBar) progressBar.style.width = (scrolled / total * 100) + '%';
+    }
+
+    // ── NAVBAR SCROLL ─────────────────────────────
+    const nav = document.getElementById('navbar');
+    function updateNav() {
+        nav.classList.toggle('shadow-md', window.scrollY > 30);
+    }
+
+    // ── REVEAL OBSERVER ───────────────────────────
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el   = e.target;
+            const dir  = el.dataset.reveal;
+            const del  = el.dataset.stagger ? parseFloat(el.dataset.stagger) * 110 : 0;
+            el.style.transitionDelay = del + 'ms';
+            el.classList.add('reveal', dir === 'left' ? 'from-left' : dir === 'right' ? 'from-right' : '', 'is-visible');
+            revealObs.unobserve(el);
         });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => {
+        el.classList.add('reveal', el.dataset.reveal === 'left' ? 'from-left' : el.dataset.reveal === 'right' ? 'from-right' : '');
+        revealObs.observe(el);
+    });
 
-        // Navbar interaction
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
-        });
+    // ── DOT NAV + SCROLL SPY ──────────────────────
+    const sections   = document.querySelectorAll('section[id]');
+    const dotLinks   = document.querySelectorAll('.dot-link');
+    const navAnchors = document.querySelectorAll('.nav-link');
+    function updateSpy() {
+        let current = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
+        dotLinks.forEach(d => d.classList.toggle('active', d.dataset.section === current));
+        navAnchors.forEach(a => a.classList.toggle('text-brand', a.getAttribute('href') === '#' + current));
+    }
 
-        // ─── HAMBURGER / DRAWER ───────────────────────
-        const menuBtn   = document.getElementById('menu-btn');
-        const mobMenu   = document.getElementById('mobile-menu');
-        const backdrop  = document.getElementById('mob-backdrop');
-        const closeBtn  = document.getElementById('menu-close');
-        const mobLinks  = document.querySelectorAll('.mob-link');
-
-        function openNav(){
-            mobMenu.classList.add('is-open');
-            menuBtn.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeNav(){
-            mobMenu.classList.remove('is-open');
-            menuBtn.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        menuBtn.addEventListener('click', () =>
-            mobMenu.classList.contains('is-open') ? closeNav() : openNav()
-        );
-        closeBtn.addEventListener('click', closeNav);
-        backdrop.addEventListener('click', closeNav);
-        mobLinks.forEach(l => l.addEventListener('click', closeNav));
-        document.addEventListener('keydown', e => e.key === 'Escape' && closeNav());
-
-        // ─── COUNTER ANIMATION ───────────────────────
-        function animateCounters() {
-            document.querySelectorAll('.stat-counter').forEach(function(el) {
-                var target = parseInt(el.dataset.target) || 0;
-                var prefix = el.dataset.prefix || '';
-                var suffix = el.dataset.suffix || '';
-                var start = 0;
-                var step = target / (1800 / 16);
-                var timer = setInterval(function() {
-                    start = Math.min(start + step, target);
-                    var display = target >= 1000
-                        ? (start >= 1000 ? Math.round(start/1000) + 'k' : Math.round(start))
-                        : Math.round(start);
-                    el.textContent = prefix + display + suffix;
-                    if (start >= target) clearInterval(timer);
+    // ── COUNTER ANIMATION ─────────────────────────
+    let countersRun = false;
+    function runCounters() {
+        if (countersRun) return;
+        const statEl = document.querySelector('.stat-counter');
+        if (!statEl) return;
+        const rect = statEl.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+            countersRun = true;
+            document.querySelectorAll('.stat-counter').forEach(el => {
+                const target = parseInt(el.dataset.target) || 0;
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                let val = 0, step = target / (1600 / 16);
+                const t = setInterval(() => {
+                    val = Math.min(val + step, target);
+                    const disp = target >= 1000 ? (val >= 1000 ? Math.round(val/1000)+'k' : Math.round(val)) : Math.round(val);
+                    el.textContent = prefix + disp + suffix;
+                    if (val >= target) clearInterval(t);
                 }, 16);
             });
         }
-        var statEl = document.querySelector('.stat-counter');
-        if (statEl) {
-            var statObs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(e) {
-                    if (e.isIntersecting) { animateCounters(); statObs.disconnect(); }
-                });
-            }, { threshold: 0.4 });
-            statObs.observe(statEl.closest('section') || statEl);
+    }
+
+    // ── MOBILE PARALLAX SUAVE (scroll) ────────────
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateProgress();
+                updateNav();
+                updateSpy();
+                runCounters();
+                ticking = false;
+            });
+            ticking = true;
         }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateNav(); updateSpy();
 
-        // ─── ACTIVE NAV LINK ─────────────────────────
-        var sections = document.querySelectorAll('section[id]');
-        var navAnchors = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', function() {
-            var current = '';
-            sections.forEach(function(s) {
-                if (window.scrollY >= s.offsetTop - 120) current = s.id;
-            });
-            navAnchors.forEach(function(a) {
-                a.classList.remove('text-brand');
-                if (a.getAttribute('href') === '#' + current) a.classList.add('text-brand');
-            });
-        }, { passive: true });
+    // ── HAMBURGER / DRAWER ────────────────────────
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobMenu  = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mob-backdrop');
+    const closeBtn = document.getElementById('menu-close');
+    const mobLinks = document.querySelectorAll('.mob-link');
 
-    </script>
+    function openNav()  { mobMenu.classList.add('is-open'); menuBtn.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeNav() { mobMenu.classList.remove('is-open'); menuBtn.classList.remove('open'); document.body.style.overflow = ''; }
+
+    menuBtn.addEventListener('click', () => mobMenu.classList.contains('is-open') ? closeNav() : openNav());
+    closeBtn.addEventListener('click', closeNav);
+    backdrop.addEventListener('click', closeNav);
+    mobLinks.forEach(l => l.addEventListener('click', closeNav));
+    document.addEventListener('keydown', e => e.key === 'Escape' && closeNav());
+</script>
+    <!-- DOT NAV lateral (solo desktop) -->
+    <nav id="dot-nav" class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
+        <a href="#inicio"     data-section="inicio"     class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Inicio"></a>
+        <a href="#nosotros"   data-section="nosotros"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Nosotros"></a>
+        <a href="#servicios"  data-section="servicios"  class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Servicios"></a>
+        <a href="#minisplits" data-section="minisplits" class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Equipos"></a>
+        <a href="#catalogo"   data-section="catalogo"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Catálogo"></a>
+        <a href="#contacto"   data-section="contacto"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Contacto"></a>
+    </nav>
 
     <!-- WhatsApp Flotante -->
     <a id="wa-float" href="https://wa.me/529931999269" target="_blank" aria-label="WhatsApp">
