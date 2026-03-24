@@ -1,1386 +1,1245 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Empresa | Climatización & Refacciones</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Animate On Scroll Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>León Escuela de Manejo | Educando para Evitar Accidentes | Villahermosa</title>
+<meta name="description" content="León Escuela de Manejo, certificada por AUTOMEX. Aprende a manejar con los mejores instructores. Cursos personalizados, constancia oficial. Llama al 9931436869.">
+<meta name="keywords" content="escuela de manejo, clases de manejo, aprender a manejar, autoescuela, licencia de conducir, Villahermosa, Tabasco">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            /* Colores extraídos exactamente del logo proporcionado */
-            --brand-blue: #283C86; 
-            --brand-dark: #1A2859;
-            --brand-light: #E9EDF8;
-            --brand-accent: #4568DC;
-        }
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --blue: #0e2d7a;
+  --blue-dark: #071a52;
+  --blue-light: #1a4abf;
+  --gold: #F5C518;
+  --gold-dark: #d4a017;
+  --red: #CC2200;
+  --white: #ffffff;
+  --gray: #f4f6fb;
+  --gray-dark: #6b7280;
+  --black: #0a0a0a;
+  --whatsapp: #25D366;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(14,45,122,0.18);
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            background-color: #f8fafc; 
-        }
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+img { max-width:100%; height:auto; display:block; }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; }
+section { padding: 80px 0; }
 
-        .title-font {
-            font-family: 'Montserrat', sans-serif;
-        }
+/* ===== UTILITY ===== */
+.container { width:90%; max-width:1200px; margin:0 auto; }
+.btn {
+  display: inline-flex; align-items:center; gap:10px;
+  padding: 14px 30px; border-radius: 50px; font-weight:700;
+  font-family:'Montserrat',sans-serif; font-size:1rem;
+  cursor:pointer; border:none; transition: var(--transition);
+  text-decoration:none;
+}
+.btn-gold { background: var(--gold); color: var(--blue-dark); }
+.btn-gold:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(245,197,24,0.4); }
+.btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+.btn-outline:hover { background: var(--white); color: var(--blue-dark); transform: translateY(-3px); }
+.btn-blue { background: var(--blue); color: var(--white); }
+.btn-blue:hover { background: var(--blue-light); transform: translateY(-3px); box-shadow: var(--shadow); }
 
-        .text-brand { color: var(--brand-blue); }
-        .bg-brand { background-color: var(--brand-blue); }
+.section-tag {
+  display:inline-block; background: rgba(245,197,24,0.15); color: var(--gold-dark);
+  border: 1px solid var(--gold); padding: 6px 18px; border-radius:50px;
+  font-size:.82rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  margin-bottom:16px;
+}
+.section-title {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); line-height:1.2;
+  color: var(--blue-dark); margin-bottom:16px;
+}
+.section-title span { color: var(--red); }
+.section-sub { font-size:1.05rem; color: var(--gray-dark); max-width:600px; line-height:1.7; }
+.text-center { text-align:center; }
+.text-center .section-sub { margin:0 auto; }
 
-        .text-gradient {
-            background: linear-gradient(90deg, var(--brand-dark), var(--brand-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(3deg); }
+}
+@keyframes floatSign {
+  0%,100% { transform: translateY(0px) rotate(-8deg); }
+  50% { transform: translateY(-22px) rotate(5deg); }
+}
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+  50% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform: translateY(40px); }
+  to { opacity:1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity:0; transform: translateX(-40px); }
+  to { opacity:1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity:0; transform: translateX(40px); }
+  to { opacity:1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity:0; transform: scale(0.85); }
+  to { opacity:1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-        /* --- MENÚ DINÁMICO --- */
-        .glass-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s ease-in-out;
-        }
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: var(--brand-blue);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+.reveal { opacity:0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform: translateY(0); }
+.reveal-left { opacity:0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left.visible { opacity:1; transform: translateX(0); }
+.reveal-right { opacity:0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right.visible { opacity:1; transform: translateX(0); }
 
-        /* --- ESTÉTICA CORPORATIVA (Bordes menos redondeados, sombras elegantes) --- */
-        .corporate-card {
-            background-color: #ffffff;
-            border: 1px solid #dde5f3;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 18px -2px rgba(40,60,134,0.11), 0 2px 6px rgba(0,0,0,0.07);
-            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .corporate-card:hover {
-            border-color: #b0c2e8;
-            box-shadow: 0 22px 44px -8px rgba(40,60,134,0.20), 0 6px 18px rgba(0,0,0,0.09);
-            transform: translateY(-5px);
-        }
+/* ===== LOADING SCREEN ===== */
+#loader {
+  position:fixed; inset:0; z-index:9999;
+  background: var(--blue-dark);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#loader.hide { opacity:0; visibility:hidden; }
+.loader-lion {
+  width:80px; height:80px; margin-bottom:20px;
+  border:5px solid rgba(245,197,24,0.2);
+  border-top-color: var(--gold);
+  border-radius:50%; animation: spin 0.9s linear infinite;
+}
+.loader-text { color:var(--white); font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:2px; }
 
-        /* Zoom sutil para imágenes */
-        .corporate-card:hover .hover-zoom {
-            transform: scale(1.05); /* Sin rotación, solo acercamiento */
-        }
-        .hover-zoom {
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
+/* ===== NAVBAR ===== */
+#navbar {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  padding: 16px 0;
+  transition: var(--transition);
+}
+#navbar.scrolled {
+  background: rgba(7,26,82,0.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  padding: 10px 0;
+}
+.nav-inner {
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo {
+  display:flex; align-items:center; gap:12px;
+}
+.nav-logo img {
+  height:52px; width:52px; object-fit:contain; border-radius:50%;
+  border:2px solid var(--gold);
+}
+.nav-brand {
+  line-height:1.2;
+}
+.nav-brand-name {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:1.25rem; color:var(--white);
+  letter-spacing:1px;
+}
+.nav-brand-sub {
+  font-size:.7rem; color:var(--gold); letter-spacing:2px; text-transform:uppercase;
+}
 
-        /* --- CINTILLA INFINITA REPARADA --- */
-        .ticker-container {
-            width: 100%;
-            overflow: hidden;
-            background: white;
-            padding: 2rem 0;
-            border-top: 1px solid #f1f5f9;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-        }
-        .ticker-track {
-            display: inline-flex;
-            width: max-content;
-            animation: scroll-ticker 40s linear infinite;
-        }
-        @keyframes scroll-ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
-        }
-        .brand-logo {
-            height: 35px;
-            object-fit: contain;
-            margin: 0 4rem;
-            filter: grayscale(100%) opacity(50%);
-            transition: all 0.4s ease;
-        }
-        .brand-logo:hover {
-            filter: grayscale(0%) opacity(100%);
-        }
+.nav-links {
+  display:flex; align-items:center; gap:32px;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.85); font-weight:500; font-size:.95rem;
+  transition: var(--transition); position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0; right:0; height:2px;
+  background: var(--gold); transform:scaleX(0); transition: var(--transition);
+}
+.nav-links a:hover { color:var(--white); }
+.nav-links a:hover::after { transform:scaleX(1); }
 
-        /* Animaciones Flotantes Más Suaves */
-        .float-slow { animation: float 8s ease-in-out infinite; }
-        .float-fast { animation: float 5s ease-in-out infinite; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); } /* Menor distancia para mayor realismo */
-        }
+.nav-cta { margin-left:16px; }
 
-        /* Botones Corporativos */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--brand-dark), var(--brand-blue));
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(40, 60, 134, 0.25);
-            border-radius: 0.5rem; /* rounded-lg */
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(40, 60, 134, 0.35);
-            background: linear-gradient(135deg, var(--brand-blue), var(--brand-accent));
-        }
+/* Hamburger */
+.hamburger {
+  display:none; flex-direction:column; gap:5px;
+  cursor:pointer; background:none; border:none; padding:5px;
+}
+.hamburger span {
+  display:block; width:26px; height:3px; background:var(--white);
+  border-radius:3px; transition: var(--transition);
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 8px); }
+.hamburger.active span:nth-child(2) { opacity:0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -8px); }
 
-        /* FAQ Accordion */
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .faq-checkbox:checked ~ .faq-answer { max-height: 300px; }
-        .faq-checkbox:checked ~ .faq-question .faq-icon { transform: rotate(180deg); color: var(--brand-blue); }
+.mobile-menu {
+  display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+  background: rgba(7,26,82,0.98); backdrop-filter:blur(20px);
+  z-index:999; flex-direction:column; align-items:center; justify-content:center; gap:36px;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a { color:var(--white); font-family:'Montserrat',sans-serif; font-size:1.8rem; font-weight:700; }
+.mobile-menu a:hover { color:var(--gold); }
 
-        /* ─── HAMBURGER ANIMATION ─── */
-        #menu-btn.open .ham-bar:nth-child(1){ transform: rotate(45deg) translate(5px, 5px); }
-        #menu-btn.open .ham-bar:nth-child(2){ opacity:0; transform: scaleX(0); }
-        #menu-btn.open .ham-bar:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+/* ===== HERO ===== */
+#hero {
+  min-height:100vh; position:relative; overflow:hidden;
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #0a1f6b 50%, #071052 100%);
+  display:flex; align-items:center; padding-top:90px;
+}
+.hero-bg-pattern {
+  position:absolute; inset:0; overflow:hidden; pointer-events:none;
+}
+.hero-bg-pattern::before {
+  content:''; position:absolute; top:-30%; right:-10%;
+  width:600px; height:600px; border-radius:50%;
+  background: radial-gradient(circle, rgba(245,197,24,0.12) 0%, transparent 70%);
+}
+.hero-bg-pattern::after {
+  content:''; position:absolute; bottom:-20%; left:-10%;
+  width:400px; height:400px; border-radius:50%;
+  background: radial-gradient(circle, rgba(26,74,191,0.3) 0%, transparent 70%);
+}
 
-        /* ─── DRAWER ACTIVE STATE ─── */
-        #mobile-menu.is-open                       { pointer-events:auto; }
-        #mobile-menu.is-open #mob-backdrop         { opacity:1; pointer-events:auto; }
-        #mobile-menu.is-open #mob-drawer           { transform:translateX(0); }
+/* Floating traffic signs */
+.sign { position:absolute; opacity:0.12; pointer-events:none; }
+.sign-1 { top:15%; left:5%; animation: floatSign 5s ease-in-out infinite; }
+.sign-2 { top:60%; right:4%; animation: floatSign 7s ease-in-out infinite 1s; }
+.sign-3 { bottom:15%; left:15%; animation: floatSign 6s ease-in-out infinite 2s; }
+.sign-4 { top:30%; right:20%; animation: floatSign 8s ease-in-out infinite 0.5s; }
 
-        /* ─── RESPONSIVE GLOBAL ─── */
-        
-        /* ════════════════════════════════════════════
-           REVEAL ANIMATIONS — scroll-triggered
-        ════════════════════════════════════════════ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(.22,.68,0,1.1), transform 0.7s cubic-bezier(.22,.68,0,1.1);
-            will-change: opacity, transform;
-        }
-        .reveal.from-left  { transform: translateX(-32px); }
-        .reveal.from-right { transform: translateX(32px); }
-        .reveal.from-scale { transform: scale(0.92) translateY(16px); }
-        .reveal.is-visible {
-            opacity: 1 !important;
-            transform: none !important;
-        }
-        .reveal.delay-1 { transition-delay: 0.10s; }
-        .reveal.delay-2 { transition-delay: 0.20s; }
-        .reveal.delay-3 { transition-delay: 0.30s; }
-        .reveal.delay-4 { transition-delay: 0.40s; }
-        .reveal.delay-5 { transition-delay: 0.50s; }
+.hero-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  align-items:center; width:100%;
+}
+.hero-content { animation: fadeInLeft 1s ease both; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:10px;
+  background: rgba(245,197,24,0.15); border:1px solid rgba(245,197,24,0.4);
+  padding:8px 20px; border-radius:50px; margin-bottom:28px;
+}
+.hero-badge img { height:28px; }
+.hero-badge span { color:var(--gold); font-size:.85rem; font-weight:700; letter-spacing:1px; }
 
-        /* Parallax suave en mobile */
-        .para-slow {
-            transition: transform 0.1s linear;
-            will-change: transform;
-        }
+.hero-title {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size: clamp(2.2rem, 5vw, 3.8rem); line-height:1.1;
+  color:var(--white); margin-bottom:20px;
+}
+.hero-title .highlight {
+  color: var(--gold);
+  background: linear-gradient(90deg, var(--gold), #fff59d, var(--gold));
+  background-size:200% auto;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation: shimmer 3s linear infinite;
+}
+.hero-sub {
+  font-size:1.1rem; color:rgba(255,255,255,0.8); line-height:1.7;
+  margin-bottom:36px; max-width:480px;
+}
+.hero-buttons { display:flex; flex-wrap:wrap; gap:16px; margin-bottom:40px; }
 
-        /* ════════════════════════════════════════════
-           MOBILE RESPONSIVE
-        ════════════════════════════════════════════ */
+.hero-stats {
+  display:flex; gap:32px; flex-wrap:wrap;
+}
+.hero-stat { text-align:center; }
+.hero-stat-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.8rem; color:var(--gold); }
+.hero-stat-label { font-size:.78rem; color:rgba(255,255,255,0.65); text-transform:uppercase; letter-spacing:1px; }
 
-        /* Nav: altura de la barra interna */
-        #navbar { top: 0; }
+.hero-image {
+  display:flex; justify-content:center; align-items:flex-end;
+  position:relative; animation: fadeInRight 1s ease both 0.3s;
+}
+.mascot-wrap {
+  position:relative; animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+}
+.mascota-img {
+  width:100%; max-width:420px; object-fit:contain;
+}
+.hero-glow {
+  position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+  width:280px; height:40px; border-radius:50%;
+  background: radial-gradient(ellipse, rgba(245,197,24,0.4), transparent);
+  filter:blur(10px);
+}
 
-        @media (max-width:1023px) {
-            .hidden.lg\:flex { display:none !important; }
-        }
+.scroll-indicator {
+  position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  animation: fadeInUp 1s ease both 1.5s;
+}
+.scroll-indicator span { color:rgba(255,255,255,0.5); font-size:.75rem; letter-spacing:2px; text-transform:uppercase; }
+.scroll-arrow {
+  width:24px; height:24px; border-right:2px solid rgba(255,255,255,0.4);
+  border-bottom:2px solid rgba(255,255,255,0.4);
+  transform:rotate(45deg); animation: float 1.5s ease-in-out infinite;
+}
 
-        @media (max-width:767px) {
-            /* Hero */
-            #inicio { padding-top: 5.5rem !important; min-height: auto !important; padding-bottom: 2rem; }
-            #inicio .grid { grid-template-columns: 1fr !important; gap: 0 !important; text-align: center; }
-            #inicio .flex.flex-wrap { justify-content: center; }
-            #inicio [data-aos="fade-left" data-reveal="left"],
-            #inicio [data-reveal="left"] { order: -1; }
-            #inicio [data-aos="fade-right" data-reveal="right"],
-            #inicio [data-reveal="right"] { order: 1; }
-            #inicio [data-aos="fade-left" data-reveal="left"] img { max-width: 240px; margin: 0 auto; }
-            /* Badge flotante en mobile: relativo */
-            #inicio .absolute.-bottom-4 {
-                position: relative !important; bottom: auto !important; left: auto !important;
-                margin: 0.75rem auto 0; display: inline-flex;
-            }
-            #inicio .absolute.top-4 { display: none; }
+/* ===== STATS BAND ===== */
+#stats {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  padding: 60px 0;
+}
+.stats-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:30px;
+}
+.stat-card {
+  text-align:center; padding:30px 20px;
+  border: 1px solid rgba(245,197,24,0.2); border-radius:var(--radius);
+  background: rgba(255,255,255,0.05);
+  transition: var(--transition);
+}
+.stat-card:hover { background: rgba(245,197,24,0.1); border-color:var(--gold); transform:translateY(-5px); }
+.stat-icon { font-size:2.2rem; margin-bottom:12px; }
+.stat-num {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:2.8rem; color:var(--gold); line-height:1;
+}
+.stat-label { font-size:.85rem; color:rgba(255,255,255,0.7); margin-top:6px; text-transform:uppercase; letter-spacing:1px; }
 
-            /* Hero h1 */
-            .text-\[2rem\] { font-size: 1.85rem !important; }
+/* ===== SERVICES ===== */
+#servicios { background: var(--gray); }
+.services-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:50px;
+}
+.service-card {
+  background:var(--white); border-radius:var(--radius);
+  padding:36px 28px; text-align:center;
+  border:2px solid transparent;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: var(--transition); cursor:default;
+  position:relative; overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+  transform:scaleX(0); transform-origin:left; transition: var(--transition);
+}
+.service-card:hover {
+  border-color:var(--gold); transform:translateY(-8px);
+  box-shadow: 0 20px 50px rgba(14,45,122,0.15);
+}
+.service-card:hover::before { transform:scaleX(1); }
+.service-icon {
+  width:70px; height:70px; border-radius:50%;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 20px; font-size:1.8rem;
+  transition: var(--transition);
+}
+.service-card:hover .service-icon { transform:scale(1.1) rotate(-5deg); background: linear-gradient(135deg, var(--gold-dark), var(--gold)); }
+.service-title { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; color:var(--blue-dark); margin-bottom:10px; }
+.service-desc { font-size:.9rem; color:var(--gray-dark); line-height:1.6; }
+.service-badge {
+  display:inline-block; margin-top:16px;
+  background:rgba(14,45,122,0.08); color:var(--blue);
+  padding:4px 14px; border-radius:50px; font-size:.78rem; font-weight:600;
+}
 
-            /* Botones hero full-width */
-            .flex.flex-wrap.gap-4 > a,
-            .flex.flex-wrap.gap-4 > button { width: 100%; justify-content: center; }
+/* ===== WHY US ===== */
+#nosotros { background:var(--white); }
+.why-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; margin-top:20px;
+}
+.why-image-wrap { position:relative; }
+.why-main-img {
+  width:100%; border-radius:24px;
+  box-shadow: 0 30px 80px rgba(14,45,122,0.2);
+}
+.why-cert-badge {
+  position:absolute; bottom:-20px; right:-20px;
+  background:var(--white); border-radius:16px; padding:16px 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  display:flex; align-items:center; gap:12px;
+}
+.why-cert-badge img { height:50px; }
+.why-cert-text p:first-child { font-weight:700; font-size:.85rem; color:var(--blue-dark); }
+.why-cert-text p:last-child { font-size:.75rem; color:var(--gray-dark); }
 
-            /* Ticker */
-            .ticker-container { padding: 0.75rem 0; }
-            .brand-logo { height: 24px; margin: 0 1.75rem; }
+.why-list { margin-top:24px; display:flex; flex-direction:column; gap:16px; }
+.why-item {
+  display:flex; align-items:flex-start; gap:16px;
+  padding:16px 20px; border-radius:12px;
+  background:var(--gray); transition: var(--transition);
+}
+.why-item:hover { background:rgba(14,45,122,0.06); transform:translateX(6px); }
+.why-check {
+  min-width:32px; height:32px; border-radius:50%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  display:flex; align-items:center; justify-content:center; margin-top:2px;
+}
+.why-check svg { width:16px; height:16px; fill:var(--white); }
+.why-item-title { font-weight:700; font-size:.95rem; color:var(--blue-dark); }
+.why-item-sub { font-size:.85rem; color:var(--gray-dark); margin-top:2px; }
 
-            /* Trust strip */
-            .trust-grid { grid-template-columns: repeat(2,1fr) !important; gap: 1rem !important; }
+/* ===== GRADUATES ===== */
+#egresados { background: var(--gray); }
+.graduates-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:50px;
+}
+.grad-card {
+  background:var(--white); border-radius:var(--radius);
+  padding:28px; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transition: var(--transition); position:relative;
+  border:2px solid transparent;
+}
+.grad-card:hover { border-color:var(--gold); transform:translateY(-6px); box-shadow: 0 20px 50px rgba(14,45,122,0.12); }
+.grad-header { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+.grad-avatar {
+  width:56px; height:56px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.4rem;
+  color:var(--white); flex-shrink:0;
+}
+.grad-info-name { font-weight:700; font-size:1rem; color:var(--blue-dark); }
+.grad-stars { color:var(--gold); font-size:.95rem; margin-top:2px; }
+.grad-badge {
+  position:absolute; top:16px; right:16px;
+  background:rgba(14,45,122,0.08); color:var(--blue);
+  padding:4px 12px; border-radius:50px; font-size:.72rem; font-weight:700;
+}
+.grad-quote { font-size:.9rem; color:var(--gray-dark); line-height:1.65; font-style:italic; }
+.grad-quote::before { content:'"'; font-size:2rem; color:var(--gold); line-height:0; vertical-align:-10px; margin-right:4px; }
 
-            /* Nosotros imágenes */
-            .grid.grid-cols-2.gap-4 img { height: 8rem; }
+.graduates-cta { text-align:center; margin-top:50px; }
 
-            /* Servicios — sin translate Y */
-            .md\:grid-cols-3.gap-8 .corporate-card { transform: none !important; }
+/* ===== GALLERY / CONSTANCIA ===== */
+#constancia { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%); color:var(--white); }
+.cert-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;
+}
+.cert-content .section-title { color:var(--white); }
+.cert-content .section-title span { color:var(--gold); }
+.cert-desc { font-size:1rem; color:rgba(255,255,255,0.8); line-height:1.7; margin-bottom:28px; }
+.cert-features { display:flex; flex-direction:column; gap:14px; }
+.cert-feat {
+  display:flex; align-items:center; gap:14px;
+  background:rgba(255,255,255,0.07); border-radius:12px; padding:14px 18px;
+}
+.cert-feat-icon { font-size:1.4rem; }
+.cert-feat-text { font-size:.9rem; color:rgba(255,255,255,0.85); }
+.cert-feat-text strong { color:var(--white); }
+.cert-image-wrap {
+  position:relative; display:flex; justify-content:center;
+}
+.constancia-img {
+  width:100%; max-width:480px; border-radius:20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  transform:rotate(-2deg); transition: var(--transition);
+}
+.constancia-img:hover { transform:rotate(0deg) scale(1.02); }
 
-            /* Proceso */
-            .proceso-grid { grid-template-columns: 1fr !important; }
-            .proceso-line  { display: none !important; }
+/* ===== TESTIMONIALS ===== */
+#testimonios { background:var(--white); }
+.testimonials-slider { margin-top:50px; position:relative; overflow:hidden; }
+.testimonials-track { display:flex; gap:28px; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+.testimonial-card {
+  min-width:360px; background:var(--gray); border-radius:var(--radius);
+  padding:32px; border-left:4px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.test-stars { color:var(--gold); font-size:1.1rem; margin-bottom:16px; }
+.test-text { font-size:.95rem; color:#374151; line-height:1.7; font-style:italic; margin-bottom:20px; }
+.test-author { display:flex; align-items:center; gap:14px; }
+.test-avatar {
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:1rem; color:var(--white);
+}
+.test-name { font-weight:700; font-size:.9rem; color:var(--blue-dark); }
+.test-date { font-size:.78rem; color:var(--gray-dark); }
+.slider-dots { display:flex; gap:10px; justify-content:center; margin-top:32px; }
+.dot {
+  width:10px; height:10px; border-radius:50%;
+  background:rgba(14,45,122,0.2); cursor:pointer; transition: var(--transition);
+  border:none;
+}
+.dot.active { background:var(--blue); width:28px; border-radius:5px; }
 
-            /* Minisplits */
-            section.min-h-\[85vh\] { min-height: auto !important; }
-            .float-slow, .float-fast { animation: none; }
-            .max-w-md { max-width: 90%; }
+/* ===== CTA BAND ===== */
+#cta-final {
+  background: linear-gradient(135deg, #0a1a5c 0%, var(--blue) 50%, #1a4abf 100%);
+  text-align:center; padding:100px 0;
+  position:relative; overflow:hidden;
+}
+#cta-final::before {
+  content:''; position:absolute; inset:0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-title {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size: clamp(2rem, 4.5vw, 3.2rem); color:var(--white); margin-bottom:16px;
+}
+.cta-title span { color:var(--gold); }
+.cta-sub { font-size:1.1rem; color:rgba(255,255,255,0.8); margin-bottom:40px; }
+.cta-phone {
+  display:inline-flex; align-items:center; gap:10px; margin-bottom:32px;
+  background:rgba(255,255,255,0.1); border-radius:50px; padding:12px 28px;
+  color:var(--white); font-size:1.4rem; font-weight:700; letter-spacing:2px;
+}
+.cta-buttons { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+.btn-whatsapp-big {
+  background:var(--whatsapp); color:var(--white);
+  font-size:1.1rem; padding:18px 40px;
+}
+.btn-whatsapp-big:hover { background:#1da851; transform:translateY(-4px); box-shadow:0 15px 40px rgba(37,211,102,0.4); }
 
-            /* Catálogo */
-            .grid.grid-cols-1.sm\:grid-cols-2 { grid-template-columns: repeat(2,1fr) !important; }
-            .grid.grid-cols-1.sm\:grid-cols-2 .corporate-card { padding: 0.75rem !important; }
-            .grid.grid-cols-1.sm\:grid-cols-2 .h-32 { height: 5rem; }
+/* ===== FOOTER ===== */
+footer {
+  background:var(--black); color:rgba(255,255,255,0.7);
+  padding:60px 0 30px;
+}
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;
+}
+.footer-brand img { height:60px; margin-bottom:16px; }
+.footer-brand-name { font-family:'Montserrat',sans-serif; font-weight:900; color:var(--white); font-size:1.2rem; }
+.footer-brand-sub { font-size:.8rem; color:var(--gold); letter-spacing:1px; margin-bottom:12px; }
+.footer-brand-desc { font-size:.875rem; line-height:1.6; }
+.footer-col h4 { font-family:'Montserrat',sans-serif; font-weight:700; color:var(--white); margin-bottom:20px; font-size:.95rem; }
+.footer-col ul { display:flex; flex-direction:column; gap:10px; }
+.footer-col li a { font-size:.875rem; color:rgba(255,255,255,0.6); transition:var(--transition); }
+.footer-col li a:hover { color:var(--gold); }
+.footer-contact-item { display:flex; align-items:center; gap:10px; font-size:.875rem; margin-bottom:10px; }
+.footer-contact-item svg { width:18px; height:18px; fill:var(--gold); flex-shrink:0; }
+.footer-divider { border:none; border-top:1px solid rgba(255,255,255,0.08); margin-bottom:24px; }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+}
+.footer-bottom p { font-size:.8rem; }
+.footer-reg { font-size:.8rem; color:var(--gold); font-weight:600; }
 
-            /* Stats 2 col */
-            .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+/* ===== WHATSAPP FLOAT ===== */
+#wa-float {
+  position:fixed; bottom:28px; right:28px; z-index:900;
+  width:62px; height:62px; border-radius:50%;
+  background:var(--whatsapp); display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 25px rgba(37,211,102,0.5);
+  animation: pulse-glow 2.5s infinite;
+  transition: var(--transition);
+}
+#wa-float:hover { transform:scale(1.1) translateY(-3px); }
+#wa-float svg { width:32px; height:32px; fill:var(--white); }
+.wa-tooltip {
+  position:absolute; right:74px; white-space:nowrap;
+  background:var(--black); color:var(--white);
+  padding:8px 16px; border-radius:8px; font-size:.8rem; font-weight:600;
+  opacity:0; pointer-events:none; transition:var(--transition);
+}
+#wa-float:hover .wa-tooltip { opacity:1; }
 
-            /* Phone IA */
-            .w-\[260px\] { width: 200px; }
-
-            /* Testimonios */
-            .md\:grid-cols-3.gap-6 { grid-template-columns: 1fr !important; }
-
-            /* Gases grid */
-            .gases-grid { grid-template-columns: repeat(2,1fr) !important; }
-
-            /* Contacto mapa */
-            .corporate-card.h-\[400px\] { height: 220px !important; }
-            .grid.lg\:grid-cols-2.gap-12 { gap: 1.5rem; }
-
-            /* Footer */
-            .footer-links-grid { grid-template-columns: repeat(2,1fr) !important; }
-        }
-
-        @media (max-width: 480px) {
-            .grid.grid-cols-1.sm\:grid-cols-2 { grid-template-columns: 1fr !important; }
-            .gases-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-
-        /* ════════════════════════════════════════════
-           PROFESSIONAL DETAILS
-        ════════════════════════════════════════════ */
-
-        /* Scroll progress bar */
-        #progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
-            z-index: 1000;
-            transition: width 0.1s linear;
-        }
-
-        /* Section divider — onda sutil */
-        .wave-divider {
-            display: block;
-            overflow: hidden;
-            line-height: 0;
-        }
-        .wave-divider svg { display: block; }
-
-        /* Noise texture overlay sutil en secciones azules */
-        .noise-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.06;
-        }
-
-        /* Line separator decorativo */
-        .deco-line {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(40,60,134,0.18), transparent);
-            margin: 0;
-        }
-
-        /* Badges flotantes extra suaves */
-        @keyframes floatA { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-9px) rotate(-1deg)} }
-        @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-        .badge-float  { animation: floatA 4s ease-in-out infinite; }
-        .badge-float2 { animation: floatB 5s ease-in-out 1s infinite; }
-
-        /* Hover zoom img */
-        .hover-zoom { transition: transform 0.6s cubic-bezier(.22,.68,0,1.1); }
-        .corporate-card:hover .hover-zoom { transform: scale(1.06); }
-
-        /* Service icon */
-        .service-icon-wrap { transition: all 0.35s cubic-bezier(.22,.68,0,1.2); }
-        .corporate-card:hover .service-icon-wrap { transform: scale(1.12) rotate(-5deg); }
-
-        /* BTN shine */
-        .btn-primary { position: relative; overflow: hidden; }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -80%;
-            width: 50%; height: 200%;
-            background: rgba(255,255,255,0.14);
-            transform: skewX(-18deg);
-            transition: left 0.6s ease;
-            pointer-events: none;
-        }
-        .btn-primary:hover::after { left: 130%; }
-
-        /* Top line en cards al hover */
-        .corporate-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--brand-blue), var(--brand-accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-            border-radius: 0.75rem 0.75rem 0 0;
-        }
-        .corporate-card:hover::before { transform: scaleX(1); }
-
-        /* Float animations */
-        .float-slow { animation: float 8s ease-in-out infinite; }
-        .float-fast  { animation: float 5s ease-in-out infinite; }
-        @keyframes float {
-            0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
-        }
-
-        /* WA flotante */
-        #wa-float {
-            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
-            width: 56px; height: 56px; background: #25D366; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.12);
-            transition: all 0.3s cubic-bezier(.22,.68,0,1.2);
-            text-decoration: none;
-        }
-        #wa-float:hover { transform: scale(1.12); }
-        #wa-float i { font-size: 1.6rem; color: white; }
-        @keyframes waPulse {
-            0%,100%{ box-shadow: 0 6px 24px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,0); }
-            50%    { box-shadow: 0 6px 24px rgba(37,211,102,.45), 0 0 0 10px rgba(37,211,102,0); }
-        }
-        #wa-float { animation: waPulse 3s ease-in-out infinite; }
-
-        /* Stat counter */
-        .stat-counter { transition: color 0.3s; }
-
-        /* Section eyebrow */
-        .section-eyebrow {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 10px; font-weight: 800; color: var(--brand-blue);
-            letter-spacing: .35em; text-transform: uppercase; margin-bottom: 1rem;
-        }
-        .section-eyebrow::before {
-            content: ''; width: 24px; height: 2px;
-            background: var(--brand-blue); display: block;
-        }
-
-        /* Proceso connector */
-        .proceso-connector {
-            position: absolute; top: 2rem; left: 16.67%; right: 16.67%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(40,60,134,.25), transparent);
-        }
-
-        /* Glass card para CTA oscura */
-        .glass-dark {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(8px);
-        }
-    
-
-        /* ─── DOT NAV ─── */
-        .dot-link { display: block; }
-        .dot-link.active { background-color: var(--brand-blue) !important; transform: scale(1.5); }
-
-        /* ─── DOT NAV ─── */
-        .dot-link { display: block; }
-        .dot-link.active { background-color: var(--brand-blue) !important; transform: scale(1.6); box-shadow: 0 0 0 3px rgba(40,60,134,0.18); }
-    </style>
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 768px) {
+  section { padding:60px 0; }
+  .nav-links, .nav-cta { display:none; }
+  .hamburger { display:flex; }
+  .hero-inner { grid-template-columns:1fr; gap:40px; text-align:center; }
+  .hero-content { order:2; }
+  .hero-image { order:1; }
+  .mascota-img { max-width:280px; }
+  .hero-buttons { justify-content:center; }
+  .hero-stats { justify-content:center; }
+  .why-grid { grid-template-columns:1fr; }
+  .cert-inner { grid-template-columns:1fr; }
+  .graduates-grid { grid-template-columns:repeat(2,1fr); }
+  .footer-grid { grid-template-columns:1fr; gap:30px; }
+  .footer-bottom { flex-direction:column; text-align:center; }
+  .why-cert-badge { right:10px; bottom:-10px; }
+  .testimonial-card { min-width:290px; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .services-grid { grid-template-columns:1fr; }
+  .graduates-grid { grid-template-columns:1fr; }
+  .cta-buttons { flex-direction:column; align-items:center; }
+  #wa-float { bottom:20px; right:20px; width:56px; height:56px; }
+}
+</style>
 </head>
-<body class="text-slate-800">
-    <div id="progress-bar"></div>
+<body>
 
-    <!-- ==========================================
-         1. NAVEGACIÓN (unified)
-    =========================================== -->
-    <nav class="fixed w-full z-[55] glass-header border-b border-slate-200" id="navbar">
-        <!-- Barra 24/7 — solo escritorio -->
-        <div class="hidden md:flex w-full bg-gradient-to-r from-[#1A2859] to-[#283C86] text-white py-1.5 px-4 items-center justify-center gap-6">
-            <span class="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest"><i class="fas fa-circle text-green-400 text-[5px] animate-pulse"></i>Emergencias 24/7</span>
-            <span class="w-px h-3 bg-white/20"></span>
-            <span class="flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider"><i class="fas fa-phone-alt text-blue-300 text-[8px]"></i>993 199 9269</span>
-            <span class="w-px h-3 bg-white/20"></span>
-            <span class="hidden lg:flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider"><i class="fas fa-truck text-blue-300 text-[8px]"></i>Envío mismo día · Villahermosa</span>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-lion"></div>
+  <p class="loader-text">CARGANDO...</p>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a id="wa-float" href="https://wa.me/529931436869?text=Hola!%20Me%20interesa%20tomar%20clases%20de%20manejo%20en%20León%20Escuela%20de%20Manejo." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <span class="wa-tooltip">¡Agenda tu clase!</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.jpg" alt="León Escuela de Manejo Logo">
+        <div class="nav-brand">
+          <div class="nav-brand-name">LEÓN</div>
+          <div class="nav-brand-sub">Escuela de Manejo</div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <img src="" alt="Logo" class="h-30 md:h-20 object-contain">
-            </div>
-
-            <div class="hidden lg:flex space-x-10 text-[13px] font-bold text-slate-600 uppercase tracking-widest">
-                <a href="#nosotros" class="nav-link hover:text-brand">Nosotros</a>
-                <a href="#servicios" class="nav-link hover:text-brand">Servicios</a>
-                <a href="#minisplits" class="nav-link hover:text-brand">Equipos</a>
-                <a href="#catalogo" class="nav-link hover:text-brand">Refacciones</a>
-                <a href="#contacto" class="nav-link hover:text-brand">Contacto</a>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <a href="https://wa.me/529931999269" target="_blank" class="btn-primary text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <i class="fab fa-whatsapp text-lg"></i>
-                    <span class="hidden sm:inline">Cotizar Ahora</span>
-                    <span class="sm:hidden">Cotizar</span>
-                </a>
-                <!-- Botón hamburguesa — solo visible en mobile -->
-                <button id="menu-btn" aria-label="Abrir menú"
-                    class="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg border border-slate-200 bg-white shadow-sm gap-[5px] focus:outline-none">
-                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300 origin-center"></span>
-                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300"></span>
-                    <span class="ham-bar block w-5 h-[2px] bg-slate-700 rounded transition-all duration-300 origin-center"></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ════ MOBILE DRAWER ════ -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
-        <div id="mob-backdrop"
-             class="absolute inset-0 bg-slate-900/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-        <div id="mob-drawer"
-             class="absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl flex flex-col
-                    translate-x-full transition-transform duration-300 ease-in-out">
-
-            <!-- Cabecera del drawer -->
-            <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
-                <span class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Navegación</span>
-                <button id="menu-close"
-                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 hover:bg-slate-200 transition text-slate-600">
-                    <i class="fas fa-times text-sm"></i>
-                </button>
-            </div>
-
-            <!-- Links -->
-            <nav class="flex flex-col px-4 py-6 gap-1 flex-1 overflow-y-auto">
-                <a href="#nosotros"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
-                    <i class="fas fa-building text-brand w-4 text-center text-xs"></i> Nosotros</a>
-                <a href="#servicios"  class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
-                    <i class="fas fa-tools text-brand w-4 text-center text-xs"></i> Servicios</a>
-                <a href="#minisplits" class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
-                    <i class="fas fa-snowflake text-brand w-4 text-center text-xs"></i> Equipos</a>
-                <a href="#catalogo"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
-                    <i class="fas fa-boxes text-brand w-4 text-center text-xs"></i> Refacciones</a>
-                <a href="#contacto"   class="mob-link px-4 py-3.5 rounded-lg text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-brand flex items-center gap-3 transition">
-                    <i class="fas fa-map-marker-alt text-brand w-4 text-center text-xs"></i> Contacto</a>
-            </nav>
-
-            <!-- CTA footer del drawer -->
-            <div class="px-4 pb-8 pt-2 border-t border-slate-100">
-                <a href="https://wa.me/529931999269" target="_blank"
-                   class="btn-primary w-full text-white py-3.5 font-bold text-sm flex items-center justify-center gap-2 rounded-lg">
-                    <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
-                </a>
-            </div>
-        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#egresados">Egresados</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+      </ul>
+      <a href="https://wa.me/529931436869?text=Hola!%20Quiero%20agendar%20una%20clase%20de%20manejo." target="_blank" class="btn btn-gold nav-cta" rel="noopener">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ¡Agenda Ahora!
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
 
-    <!-- ==========================================
-         2. HERO SECTION
-    =========================================== -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-28 md:pt-36 overflow-hidden bg-white">
-        <!-- Decoraciones de fondo -->
-        <!-- Panel azul derecho -->
-        <div class="absolute top-0 right-0 w-[48%] h-full bg-gradient-to-br from-[#E9EDF8] to-[#dbe3f7] hidden lg:block"></div>
-        <!-- Círculo decorativo grande -->
-        <div class="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full border border-[#283C86]/8 hidden lg:block"></div>
-        <div class="absolute top-8 right-8 w-[380px] h-[380px] rounded-full border border-[#283C86]/6 hidden lg:block"></div>
-        <!-- Grid de puntos fondo izquierda -->
-        <div class="absolute inset-0 opacity-[0.025]" style="background-image:radial-gradient(circle,#283C86 1px,transparent 1px);background-size:28px 28px;"></div>
-        <!-- Línea diagonal decorativa -->
-        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#283C86]/20 to-transparent"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 lg:gap-12 relative z-10 items-center">
-            <div data-aos="fade-right" data-reveal="right">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md mb-6">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-slate-700 text-[10px] font-bold uppercase tracking-widest">Disponibilidad Inmediata en Villahermosa</span>
-                </div>
-                <h1 class="text-[2rem] sm:text-5xl md:text-7xl font-black title-font leading-[1.1] text-slate-900 mb-6">
-                    Domina el <br>
-                    clima con <br>
-                    <span class="text-brand">Presicion</span>
-                </h1>
-                <p class="text-lg text-slate-500 max-w-lg leading-relaxed mb-8 font-medium">
-                    Especialistas en suministro industrial de equipos de aire acondicionado, refacciones originales y proyectos de ingeniería térmica.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#catalogo" class="btn-primary text-white px-8 py-3.5 font-bold text-sm flex items-center gap-2">
-                        Explorar Inventario <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#minisplits" class="bg-white text-slate-700 border border-slate-300 rounded-lg px-8 py-3.5 font-bold text-sm hover:bg-slate-50 transition-all flex items-center gap-2">
-                        <i class="fas fa-snowflake text-brand"></i> Venta de Equipos
-                    </a>
-                </div>
-            </div>
-            
-            <div class="relative" data-aos="fade-left" data-reveal="left" data-aos-duration="1000">
-                <!-- Imagen hero: visible en todos los tamaños -->
-                <div class="relative z-10 flex justify-center lg:justify-end">
-                    <!-- Fondo decorativo geométrico detrás de la imagen -->
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-                        <div class="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[500px] lg:h-[500px] rounded-full bg-gradient-to-br from-[#E9EDF8] to-[#c8d4f0] opacity-60"></div>
-                    </div>
-                    <img src="https://airclimcor.com/wp-content/uploads/2025/01/tecnica-especialista.png"
-                         alt="Técnico especialista en climatización"
-                         class="relative z-10 w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[520px] drop-shadow-2xl"
-                         style="filter:drop-shadow(0 20px 50px rgba(40,60,134,0.18))">
-                </div>
-                <div class="absolute -bottom-4 left-4 lg:-bottom-6 lg:-left-8 bg-white p-4 lg:p-5 rounded-xl shadow-xl border border-slate-100 z-20 float-slow flex items-center gap-3 lg:gap-4">
-                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white text-lg shadow-inner">
-                        <i class="fas fa-check-double"></i>
-                    </div>
-                    <div>
-                        <p class="text-slate-900 font-black text-sm">Garantía Directa</p>
-                        <p class="text-slate-500 text-[10px] uppercase tracking-widest font-bold">100% Originales</p>
-                    </div>
-                </div>
-                <!-- Badge extra: años -->
-                <div class="absolute top-4 -right-2 lg:top-6 lg:-right-6 bg-[#283C86] text-white p-3 lg:p-4 rounded-xl shadow-xl z-20 float-fast text-center">
-                    <p class="text-2xl lg:text-3xl font-black title-font leading-none">+10</p>
-                    <p class="text-[8px] lg:text-[9px] font-bold uppercase tracking-widest opacity-75 mt-0.5">Años</p>
-                </div>
-            </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" class="mobile-link">Inicio</a>
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#nosotros" class="mobile-link">Nosotros</a>
+  <a href="#egresados" class="mobile-link">Egresados</a>
+  <a href="#testimonios" class="mobile-link">Testimonios</a>
+  <a href="https://wa.me/529931436869?text=Hola!%20Quiero%20agendar." target="_blank" class="btn btn-gold" rel="noopener">¡Agenda Ahora!</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+
+  <!-- Floating traffic signs SVG -->
+  <div class="sign sign-1">
+    <svg width="90" height="90" viewBox="0 0 90 90" fill="none"><polygon points="45,5 85,75 5,75" fill="#CC2200" stroke="white" stroke-width="4"/><text x="45" y="62" text-anchor="middle" fill="white" font-size="28" font-weight="900">!</text></svg>
+  </div>
+  <div class="sign sign-2">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" fill="#1a3a8f" stroke="white" stroke-width="4"/><text x="40" y="54" text-anchor="middle" fill="white" font-size="38" font-weight="900">P</text></svg>
+  </div>
+  <div class="sign sign-3">
+    <svg width="85" height="85" viewBox="0 0 85 85" fill="none"><rect x="5" y="5" width="75" height="75" rx="12" fill="#F5C518" stroke="white" stroke-width="4"/><text x="42" y="57" text-anchor="middle" fill="#0e2d7a" font-size="32" font-weight="900">50</text></svg>
+  </div>
+  <div class="sign sign-4">
+    <svg width="75" height="75" viewBox="0 0 75 75" fill="none"><circle cx="37" cy="37" r="33" fill="none" stroke="#CC2200" stroke-width="6"/><line x1="18" y1="18" x2="56" y2="56" stroke="#CC2200" stroke-width="6"/></svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#F5C518"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>CERTIFICADOS POR AUTOMEX</span>
         </div>
-    </section>
-
-
-    <!-- BANDA DE CONFIANZA -->
-    <div class="bg-[#1A2859] py-6 px-6" data-aos="fade-up" data-reveal>
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-center trust-grid">
-            <div class="flex flex-col items-center gap-1.5">
-                <i class="fas fa-shipping-fast text-2xl text-blue-300"></i>
-                <p class="text-xs font-black uppercase tracking-wider">Envío Mismo Día</p>
-                <p class="text-[10px] text-white/50">Zona metropolitana</p>
-            </div>
-            <div class="flex flex-col items-center gap-1.5">
-                <i class="fas fa-boxes text-2xl text-blue-300"></i>
-                <p class="text-xs font-black uppercase tracking-wider">+5,000 Piezas</p>
-                <p class="text-[10px] text-white/50">En inventario</p>
-            </div>
-            <div class="flex flex-col items-center gap-1.5">
-                <i class="fas fa-headset text-2xl text-blue-300"></i>
-                <p class="text-xs font-black uppercase tracking-wider">Soporte 24/7</p>
-                <p class="text-[10px] text-white/50">WhatsApp directo</p>
-            </div>
-            <div class="flex flex-col items-center gap-1.5">
-                <i class="fas fa-certificate text-2xl text-blue-300"></i>
-                <p class="text-xs font-black uppercase tracking-wider">Piezas Originales</p>
-                <p class="text-[10px] text-white/50">Garantía de fábrica</p>
-            </div>
+        <h1 class="hero-title">
+          Aprende a Manejar con<br>
+          <span class="highlight">los Mejores</span>
+        </h1>
+        <p class="hero-sub">Educando para evitar accidentes. Clases profesionales, vehículos modernos y constancia oficial al graduarte.</p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/529931436869?text=Hola!%20Quiero%20agendar%20mi%20primera%20clase%20de%20manejo." target="_blank" class="btn btn-gold" rel="noopener">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            ¡Agenda tu Clase!
+          </a>
+          <a href="#servicios" class="btn btn-outline">Ver Cursos</a>
         </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-target="500">0</div>
+            <div class="hero-stat-label">Alumnos+</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-target="5">0</div>
+            <div class="hero-stat-label">Años exp.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4.9</div>
+            <div class="hero-stat-label">Calificación</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="mascot-wrap">
+          <img src="mascota.jpg" alt="Mascota León Escuela de Manejo" class="mascota-img">
+          <div class="hero-glow"></div>
+        </div>
+      </div>
     </div>
-    <div class="deco-line"></div>
-    <!-- ==========================================
-         3. CINTILLA INFINITA DE MARCAS
-    =========================================== -->
-    <div class="ticker-container">
-        <div class="ticker-track">
-            <!-- Set 1 -->
-            <img src="https://mirage.mx/wp-content/uploads/job-manager-uploads/company_logo/2020/10/Mirage-Logo.png" alt="Mirage" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_of_the_Carrier_Corporation.svg/330px-Logo_of_the_Carrier_Corporation.svg.png" alt="Carrier" class="brand-logo">
-            <img src="https://pcbqro.com/wp-content/uploads/2019/04/LOGO-TRANE.png" alt="Trane" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Samsung_old_logo_before_year_2015.svg/1280px-Samsung_old_logo_before_year_2015.svg.png" alt="Samsung" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/LG_logo_%282014%29.svg/960px-LG_logo_%282014%29.svg.png" alt="LG" class="brand-logo">
-            <img src="https://homeclimates.com/wp-content/uploads/2025/04/york-logo-2.png" alt="York" class="brand-logo">
-            <!-- Set 2 -->
-            <img src="https://mirage.mx/wp-content/uploads/job-manager-uploads/company_logo/2020/10/Mirage-Logo.png" alt="Mirage" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_of_the_Carrier_Corporation.svg/330px-Logo_of_the_Carrier_Corporation.svg.png" alt="Carrier" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Trane_logo.svg/512px-Trane_logo.svg.png" alt="Trane" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Samsung_old_logo_before_year_2015.svg/1280px-Samsung_old_logo_before_year_2015.svg.png" alt="Samsung" class="brand-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/LG_logo_%282014%29.svg/960px-LG_logo_%282014%29.svg.png" alt="LG" class="brand-logo">
-            <img src="https://homeclimates.com/wp-content/uploads/2025/04/york-logo-2.png" alt="York" class="brand-logo">
-        </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Descubre más</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-icon">🎓</div>
+        <div class="stat-num" data-target="500">0</div>
+        <div class="stat-label">Alumnos Graduados</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.1s">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-num">4.9</div>
+        <div class="stat-label">Calificación Promedio</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.2s">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% Certificados</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.3s">
+        <div class="stat-icon">🚗</div>
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">Años de Experiencia</div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- ==========================================
-         4. NOSOTROS
-    =========================================== -->
-    <section id="nosotros" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-up" data-reveal>
-                    <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.4em] mb-4">Perfil Corporativo</h2>
-                    <h3 class="text-4xl md:text-5xl font-extrabold title-font text-slate-900 mb-6 leading-tight">
-                        Respaldo Industrial en <span class="text-brand">cada proyecto.</span>
-                    </h3>
-                    <p class="text-slate-600 mb-8 leading-relaxed text-lg">
-                        Con más de una década operando en el sureste mexicano, no solo despachamos piezas; somos aliados estratégicos. Aportamos soluciones integrales para que constructoras, industrias y hogares cuenten con el respaldo de un inventario masivo.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 stats-grid">
-                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
-                            <p class="text-3xl font-black text-slate-900 mb-0.5 stat-counter" data-target="10" data-prefix="+">+10</p>
-                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Años</p>
-                        </div>
-                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
-                            <p class="text-3xl font-black text-brand mb-0.5 stat-counter" data-target="2">2</p>
-                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Sucursales</p>
-                        </div>
-                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
-                            <p class="text-3xl font-black text-slate-900 mb-0.5 stat-counter" data-target="5000" data-prefix="+">+5k</p>
-                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Refacciones</p>
-                        </div>
-                        <div class="corporate-card p-5 border-l-4 border-l-brand text-center">
-                            <p class="text-3xl font-black text-brand mb-0.5 stat-counter" data-target="24" data-suffix="h">24h</p>
-                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Respuesta</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4" data-aos="fade-left" data-reveal="left">
-                    <img src="https://www.herporefrigeracionyclimas.com/wp-content/uploads/2023/08/tipos-de-aire-acondicionado-industrial-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
-                    <img src="https://mantenimientoaireacondicionadocdmx.com/wp-content/uploads/2022/06/tecnico-reparando-aire-acondicionado-1.jpg" class="w-full h-40 sm:h-56 object-cover rounded-xl">
-                </div>
-            </div>
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-tag">Nuestros Cursos</span>
+      <h2 class="section-title">Todo lo que <span>Necesitas</span> para Manejar</h2>
+      <p class="section-sub">Programas diseñados para cada nivel y necesidad, con instructores certificados y vehículos modernos.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🚗</div>
+        <h3 class="service-title">Curso Básico</h3>
+        <p class="service-desc">Ideal para principiantes. Aprende desde cero con paciencia y profesionalismo. Clases teóricas y prácticas.</p>
+        <span class="service-badge">Para principiantes</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon">🛡️</div>
+        <h3 class="service-title">Manejo Defensivo</h3>
+        <p class="service-desc">Aprende técnicas avanzadas para anticipar peligros, reducir riesgos y protegerte en el tráfico.</p>
+        <span class="service-badge">Nivel intermedio</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon">📋</div>
+        <h3 class="service-title">Preparación para Licencia</h3>
+        <p class="service-desc">Examen teórico y práctico completo. Te preparamos punto a punto para aprobar con éxito tu examen.</p>
+        <span class="service-badge">Trámite oficial</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.24s">
+        <div class="service-icon">🌙</div>
+        <h3 class="service-title">Manejo Nocturno</h3>
+        <p class="service-desc">Domina las condiciones de baja visibilidad. Clases en horario nocturno para una conducción 360°.</p>
+        <span class="service-badge">Habilidad avanzada</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.32s">
+        <div class="service-icon">👩</div>
+        <h3 class="service-title">Curso para Damas</h3>
+        <p class="service-desc">Ambiente seguro y empoderador con instructoras especializadas para una experiencia cómoda y efectiva.</p>
+        <span class="service-badge">Espacio seguro</span>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.4s">
+        <div class="service-icon">🔄</div>
+        <h3 class="service-title">Repaso de Habilidades</h3>
+        <p class="service-desc">¿Ya sabes manejar pero quieres perfeccionar? Identifica y corrige malos hábitos con un instructor experto.</p>
+        <span class="service-badge">Actualización</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="nosotros">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-image-wrap reveal-left">
+        <img src="logo.jpg" alt="León Escuela de Manejo - Certificada AUTOMEX" class="why-main-img">
+        <div class="why-cert-badge">
+          <img src="constancia.jpg" alt="Constancia AUTOMEX" style="height:50px;border-radius:8px;">
+          <div class="why-cert-text">
+            <p>Certificados por AUTOMEX</p>
+            <p>Registro EC/MEx/46</p>
+          </div>
         </div>
-    </section>
-
-    <!-- ==========================================
-         5. SERVICIOS ESPECIALIZADOS
-    =========================================== -->
-    <section id="servicios" class="py-24 bg-slate-50 border-y border-slate-200 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
-                <h3 class="text-4xl md:text-5xl font-black title-font text-slate-900 mb-4">División de Servicios</h3>
-                <p class="text-slate-600 max-w-xl mx-auto">Soporte técnico y comercial diseñado para evitar paros operativos por altas temperaturas.</p>
+      </div>
+      <div class="reveal-right">
+        <span class="section-tag">¿Por Qué Elegirnos?</span>
+        <h2 class="section-title">La <span>Escuela #1</span> en Formación Vial</h2>
+        <p class="section-sub">Somos la única escuela en la región certificada por AUTOMEX, cumpliendo los más altos estándares éticos y profesionales de México.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+            <div>
+              <div class="why-item-title">Certificados por AUTOMEX</div>
+              <div class="why-item-sub">La única asociación nacional de autoescuelas profesionales de México</div>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Servicio 1 -->
-                <div class="corporate-card p-8 group" data-aos="fade-up" data-reveal data-aos-delay="0">
-                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
-                        <i class="fas fa-tools text-lg"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-3 text-slate-900">Mantenimiento</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Programas preventivos y correctivos para equipos MiniSplit, Paquete y Chillers.</p>
-                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-brand mr-2"></i> Limpieza con químicos especiales</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i> Revisión de presión y amperaje</li>
-                    </ul>
-                </div>
-
-                <!-- Servicio 2 (Highlight) -->
-                <div class="corporate-card p-8 group border-b-4 border-b-brand shadow-md transform md:-translate-y-2" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
-                    <div class="w-12 h-12 bg-brand rounded-lg flex items-center justify-center mb-6 text-white shadow-inner">
-                        <i class="fas fa-drafting-compass text-lg"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-3 text-slate-900">Ingeniería Térmica</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Desarrollo de proyectos llave en mano para naves industriales y plazas comerciales.</p>
-                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-brand mr-2"></i> Cálculo de carga térmica</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i> Diseño e instalación de ductería</li>
-                    </ul>
-                </div>
-
-                <!-- Servicio 3 -->
-                <div class="corporate-card p-8 group" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
-                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-lg flex items-center justify-center mb-6 text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-colors service-icon-wrap">
-                        <i class="fas fa-warehouse text-lg"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-3 text-slate-900">Suministro B2B</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Venta por mayoreo para técnicos, contratistas y desarrolladoras de vivienda.</p>
-                    <ul class="text-xs font-semibold text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-brand mr-2"></i> Tabuladores especiales</li>
-                        <li><i class="fas fa-check text-brand mr-2"></i> Logística a pie de obra</li>
-                    </ul>
-                </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+            <div>
+              <div class="why-item-title">Instructores con más de 10 años de experiencia</div>
+              <div class="why-item-sub">Profesionales certificados, pacientes y comprometidos con tu aprendizaje</div>
             </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+            <div>
+              <div class="why-item-title">Vehículos con doble mando</div>
+              <div class="why-item-sub">Total seguridad durante tus prácticas. Unidades modernas y en perfecto estado</div>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+            <div>
+              <div class="why-item-title">Constancia oficial al graduarte</div>
+              <div class="why-item-sub">Documento avalado por AUTOMEX reconocido a nivel nacional</div>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+            <div>
+              <div class="why-item-title">Horarios flexibles mañana y tarde</div>
+              <div class="why-item-sub">Nos adaptamos a tu agenda para que aprendas sin estrés</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ==========================================
-         6. PROCESO DE TRABAJO
-    =========================================== -->
-    <section class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
-                <h2 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-4">Protocolo de Atención</h2>
-                <p class="text-slate-500">Procesos estandarizados para garantizar eficiencia operativa.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 relative proceso-grid">
-                <div class="hidden md:block proceso-connector"></div>
-
-                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="0">
-                    <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">01</div>
-                    <h4 class="text-base font-bold mb-2">Requerimiento</h4>
-                    <p class="text-sm text-slate-500 px-4">Contacto vía plataforma o WhatsApp. Especificación técnica de la refacción o equipo.</p>
-                </div>
-
-                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
-                    <div class="w-16 h-16 mx-auto bg-brand rounded-lg flex items-center justify-center text-xl text-white shadow-md border border-brand mb-6 font-black title-font">02</div>
-                    <h4 class="text-base font-bold mb-2">Validación & Cotización</h4>
-                    <p class="text-sm text-slate-500 px-4">Análisis de stock en tiempo real y asignación de presupuesto con alternativas de marca.</p>
-                </div>
-
-                <div class="relative z-10 text-center" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
-                    <div class="w-16 h-16 mx-auto bg-white rounded-lg flex items-center justify-center text-xl text-brand shadow-sm border border-slate-200 mb-6 font-black title-font">03</div>
-                    <h4 class="text-base font-bold mb-2">Despacho / Ejecución</h4>
-                    <p class="text-sm text-slate-500 px-4">Entrega en mostrador o despliegue de cuadrilla técnica para instalación en sitio.</p>
-                </div>
-            </div>
+<!-- EGRESADOS -->
+<section id="egresados">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-tag">Casos de Éxito</span>
+      <h2 class="section-title">Nuestros <span>Graduados</span></h2>
+      <p class="section-sub">Más de 500 personas ya confían en nosotros. ¡Conviértete en el próximo caso de éxito!</p>
+    </div>
+    <div class="graduates-grid">
+      <div class="grad-card reveal">
+        <span class="grad-badge">Graduado 2025</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#0e2d7a,#1a4abf)">M</div>
+          <div>
+            <div class="grad-info-name">María González</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
-
-
-    <!-- ==========================================
-         6b. LLAMADA A ACCIÓN URGENTE
-    =========================================== -->
-    <section class="py-16 px-6 bg-gradient-to-r from-[#1A2859] to-[#283C86] relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:24px 24px;"></div>
-        <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8" data-aos="fade-up" data-reveal>
-            <div class="text-white text-center md:text-left">
-                <div class="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/30 px-3 py-1 rounded-full mb-4">
-                    <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
-                    <span class="text-red-300 text-[10px] font-bold uppercase tracking-widest">Equipo sin frío · Paro de producción</span>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-black title-font text-white mb-2">¿Tu equipo falló? <span class="text-blue-300">Respondemos hoy.</span></h3>
-                <p class="text-white/60 text-sm max-w-lg">Cuadrilla de diagnóstico disponible. Identificamos la falla y surtimos la refacción en el mismo servicio.</p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-4 shrink-0">
-                <a href="https://wa.me/529931999269" target="_blank"
-                   class="btn-primary text-white px-8 py-4 font-bold text-sm flex items-center gap-3 shadow-xl whitespace-nowrap">
-                    <i class="fab fa-whatsapp text-xl text-green-400"></i> Servicio de Emergencia
-                </a>
-                <a href="tel:+529931999269"
-                   class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 font-bold text-sm flex items-center gap-3 rounded-lg transition whitespace-nowrap">
-                    <i class="fas fa-phone-alt text-blue-300"></i> 993 199 9269
-                </a>
-            </div>
+        <p class="grad-quote">Excelentes instructores, muy pacientes. En 2 semanas ya me sentía segura manejando. ¡100% recomendado!</p>
+      </div>
+      <div class="grad-card reveal" style="transition-delay:.08s">
+        <span class="grad-badge">Graduado 2025</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#CC2200,#ff4422)">C</div>
+          <div>
+            <div class="grad-info-name">Carlos Ramírez</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
-    <!-- ==========================================
-         7. MEGA SECCIÓN MINISPLITS (EQUIPOS)
-    =========================================== -->
-    <section id="minisplits" class="min-h-[85vh] py-20 bg-slate-50 px-6 relative flex items-center overflow-hidden border-t border-slate-200">
-        <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
-                <div class="inline-block px-4 py-1.5 bg-slate-800 text-white rounded-md text-[10px] font-bold uppercase tracking-widest mb-6">
-                    División de Equipos Nuevos
-                </div>
-                <h3 class="text-4xl md:text-5xl font-black title-font text-slate-900 mb-4 leading-tight tracking-tighter">
-                    Rendimiento Térmico <br>
-                    <span class="text-brand">Superior.</span>
-                </h3>
-                <p class="text-slate-600 max-w-2xl mx-auto text-base">
-                    Comercialización e instalación de unidades Minisplit estándar e Inverter. Diseñados para soportar las exigencias climáticas de Tabasco con eficiencia energética.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Textos -->
-                <div data-aos="fade-right" data-reveal="right" data-aos-delay="100" data-stagger="1" class="order-2 lg:order-1">
-                    <ul class="space-y-4 mb-8">
-                        <li class="corporate-card p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-brand">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 text-sm">Tecnología Inverter</h4>
-                                <p class="text-xs text-slate-500 mt-1">Reducción comprobada de hasta un <strong class="text-brand">70% en consumo eléctrico</strong> frente a equipos convencionales.</p>
-                            </div>
-                        </li>
-                        <li class="corporate-card p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 text-sm">Instalación Normada</h4>
-                                <p class="text-xs text-slate-500 mt-1">Ejecución limpia con vacío profundo para garantizar hermeticidad y máxima vida útil del compresor.</p>
-                            </div>
-                        </li>
-                        <li class="corporate-card p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-brand">
-                                <i class="fas fa-file-contract"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 text-sm">Garantía Extendida</h4>
-                                <p class="text-xs text-slate-500 mt-1">Soporte directo de fábrica, ofreciendo cobertura superior a 5 años en componentes críticos.</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <a href="https://wa.me/529931999269" class="btn-primary inline-flex items-center gap-3 text-white px-8 py-3.5 font-bold shadow-lg">
-                        <i class="fab fa-whatsapp text-lg"></i> Cotizar Equipos
-                    </a>
-                </div>
-
-                <!-- Imagen FLOTANDO 3D Suave -->
-                <div class="relative order-1 lg:order-2 flex justify-center" data-aos="fade-left" data-reveal="left" data-aos-delay="200" data-stagger="2">
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-6 bg-slate-300 rounded-[100%] blur-xl"></div>
-                    
-                    <div class="relative float-slow z-20 w-full max-w-md">
-                        <img src="https://www.trane.com/content/dam/Trane/Commercial/lar/argentina/products/mini-splits/dx_inverter/MS_DX_inverter.png">
-                        
-                        <div class="absolute top-4 -right-4 bg-white px-4 py-2 rounded-lg shadow-md border border-slate-200 flex items-center gap-2">
-                            <span class="text-brand"><i class="fas fa-wind"></i></span>
-                            <span class="text-xs font-bold text-slate-800">Ultra Silencioso</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="grad-quote">La mejor decisión que tomé. El instructor fue muy profesional y aprendí técnicas de manejo defensivo que no conocía.</p>
+      </div>
+      <div class="grad-card reveal" style="transition-delay:.16s">
+        <span class="grad-badge">Graduada 2024</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">A</div>
+          <div>
+            <div class="grad-info-name">Ana Hernández</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==========================================
-         8. CATÁLOGO DE REFACCIONES
-    =========================================== -->
-    <section id="catalogo" class="py-24 px-6 bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div data-aos="fade-up" data-reveal>
-                    <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Disponibilidad en Almacén</h2>
-                    <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Catálogo de Componentes</h3>
-                    <p class="text-slate-500 text-sm max-w-xl">Amplio inventario de piezas originales para mantenimiento correctivo.</p>
-                </div>
-            </div>
-
-            <!-- Grid Masivo -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                
-                <!-- 1. Tarjetas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="0">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=300" alt="Tarjetas" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Tarjetas Electrónicas</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Módulos Universales • Displays</p>
-                </div>
-
-                <!-- 2. Motores -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="50">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=300" alt="Motores" class="hover-zoom w-full h-full object-cover opacity-90 mix-blend-multiply">
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Motores</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Condensador • Evaporador</p>
-                </div>
-
-                <!-- 3. Filtros -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-filter text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Filtros Deshidratadores</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Soldables • Roscables</p>
-                </div>
-
-                <!-- 4. Aspas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="150">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-fan text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Aspas de Ventilación</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Plásticas • Metálicas</p>
-                </div>
-
-                <!-- 5. Cuchillas -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-cut text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Cuchillas de Licuadora</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Oster • 4 Navajas • 6 Navajas</p>
-                </div>
-
-                <!-- 6. Accesorios -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="250">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-blender text-4xl text-slate-400 opacity-80 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Refacciones Menores</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Vasos • Carbones Man/Oster</p>
-                </div>
-
-                <!-- 7. Capacitores -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="300" data-stagger="3">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-battery-full text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Capacitores</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Arranque • Trabajo Continúo</p>
-                </div>
-
-                <!-- 8. Gases -->
-                <div class="corporate-card p-5 cursor-pointer group" data-aos="fade-up" data-reveal data-aos-delay="350">
-                    <div class="h-32 flex items-center justify-center mb-4 rounded-lg bg-slate-50 border border-slate-100">
-                        <i class="fas fa-flask text-4xl text-brand opacity-70 group-hover:scale-105 transition-transform"></i>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Insumos Básicos</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Gases Refrigerantes • Tubería</p>
-                </div>
-
-            </div>
+        <p class="grad-quote">Tomé el curso para damas y fue increíble. Me sentí en un espacio seguro y confiable. ¡Ahora manejo sin miedo!</p>
+      </div>
+      <div class="grad-card reveal" style="transition-delay:.24s">
+        <span class="grad-badge">Graduado 2024</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#059669,#34d399)">L</div>
+          <div>
+            <div class="grad-info-name">Luis Pérez</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
-
-
-    <!-- ==========================================
-         8b. TIPOS DE REFRIGERANTE
-    =========================================== -->
-    <section class="py-20 px-6 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12" data-aos="fade-up" data-reveal>
-                <h2 class="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-2">Gases Refrigerantes</h2>
-                <h3 class="text-3xl md:text-4xl font-black title-font text-slate-900 mb-3">Stock permanente de <span class="text-brand">refrigerantes</span></h3>
-                <p class="text-slate-500 text-sm max-w-xl mx-auto">Disponemos del gas correcto para cada equipo. Venta por cilindro o granel para técnicos y empresas.</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 gases-grid">
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="0">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-blue-50 border-2 border-blue-100 flex items-center justify-center mb-4 group-hover:border-blue-400 transition-colors">
-                        <span class="text-lg font-black text-brand">R-22</span>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">Freón R-22</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Equipos residenciales<br>legacy</p>
-                </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="80">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-green-50 border-2 border-green-100 flex items-center justify-center mb-4 group-hover:border-green-400 transition-colors">
-                        <span class="text-base font-black text-green-700">R-410A</span>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-410A</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">MiniSplit moderno<br>Sin cloro</p>
-                </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="160">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-orange-50 border-2 border-orange-100 flex items-center justify-center mb-4 group-hover:border-orange-400 transition-colors">
-                        <span class="text-base font-black text-orange-700">R-404A</span>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-404A</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Refrigeración<br>comercial</p>
-                </div>
-                <div class="corporate-card p-5 text-center group cursor-default" data-aos="fade-up" data-reveal data-aos-delay="240">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-purple-50 border-2 border-purple-100 flex items-center justify-center mb-4 group-hover:border-purple-400 transition-colors">
-                        <span class="text-base font-black text-purple-700">R-32</span>
-                    </div>
-                    <h5 class="font-bold text-slate-900 text-sm mb-1">R-32</h5>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-wide">Alta eficiencia<br>Inverter nueva gen.</p>
-                </div>
-            </div>
-            <div class="mt-8 corporate-card p-5 flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up" data-reveal>
-                <div class="w-10 h-10 shrink-0 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center justify-center text-yellow-600">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <p class="text-xs text-slate-600 leading-relaxed"><strong class="text-slate-900">Nota técnica:</strong> La manipulación de gases refrigerantes requiere certificación. Nuestro personal calificado puede asistir en la carga y recuperación de refrigerante en sitio. Consulta el servicio de carga con equipo propio.</p>
-            </div>
+        <p class="grad-quote">Muy buena escuela. Las clases son amenas, el ambiente es agradable y el instructor explica todo con mucha claridad.</p>
+      </div>
+      <div class="grad-card reveal" style="transition-delay:.32s">
+        <span class="grad-badge">Graduada 2024</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#d97706,#fbbf24)">S</div>
+          <div>
+            <div class="grad-info-name">Sandra Torres</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
-    <!-- ==========================================
-         9. SECCIÓN IA / TECNOLOGÍA
-    =========================================== -->
-    <section class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
-        <!-- Textura corporativa oscura -->
-        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-            <div data-aos="fade-right" data-reveal="right">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded mb-5">
-                    <i class="fas fa-microchip text-blue-400 text-xs"></i>
-                    <span class="text-slate-200 text-[10px] font-bold uppercase tracking-widest">Integración Tecnológica</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-black title-font mb-4 leading-tight">
-                    Gestión automatizada mediante <span class="text-blue-400">Asistente IA.</span>
-                </h2>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-                    Optimizamos nuestra atención a clientes industriales y técnicos. Nuestro sistema en WhatsApp procesa cotizaciones de refacciones, levanta pedidos y agenda mantenimientos de forma automatizada 24/7.
-                </p>
-                <a href="https://wa.me/529931999269" class="btn-primary text-white px-6 py-3 font-bold shadow-lg inline-block text-sm">
-                    Probar Sistema Automatizado <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="relative flex justify-center" data-aos="fade-left" data-reveal="left">
-                <!-- Phone Mockup -->
-                <div class="w-[260px] bg-slate-50 rounded-[2rem] border-[4px] border-slate-700 shadow-2xl overflow-hidden relative float-slow">
-                    <div class="absolute top-0 inset-x-0 h-4 bg-slate-700 rounded-b-lg w-24 mx-auto z-20"></div>
-                    <div class="bg-white h-[450px] p-4 pt-8 flex flex-col gap-3 relative">
-                        <div class="border-b border-slate-100 pb-2 flex items-center gap-3">
-                            <div class="w-7 h-7 bg-brand rounded-md flex items-center justify-center text-white text-[10px]"><i class="fas fa-robot"></i></div>
-                            <div>
-                                <p class="text-slate-900 text-xs font-bold">Sistema IA</p>
-                                <p class="text-green-500 text-[9px] font-medium">Operativo</p>
-                            </div>
-                        </div>
-                        <div class="bg-slate-100 p-2.5 rounded-xl rounded-tr-sm text-xs text-slate-700 self-end max-w-[85%] border border-slate-200 shadow-sm">
-                            ¿Cotización de filtro deshidratador 1/4?
-                        </div>
-                        <div class="bg-brand p-2.5 rounded-xl rounded-tl-sm text-xs text-white self-start max-w-[90%] shadow-md">
-                            Confirmado. Modelo FDEK-082 disponible en sucursal matriz. ¿Preparamos orden de salida?
-                        </div>
-                        <div class="bg-slate-100 p-2.5 rounded-xl rounded-tr-sm text-xs text-slate-700 self-end max-w-[85%] border border-slate-200 shadow-sm mt-auto">
-                            Aprobar orden.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="grad-quote">Llevaba años con miedo a manejar. León me dio la confianza y las herramientas para lograrlo. ¡Eternamente agradecida!</p>
+      </div>
+      <div class="grad-card reveal" style="transition-delay:.4s">
+        <span class="grad-badge">Graduado 2025</span>
+        <div class="grad-header">
+          <div class="grad-avatar" style="background:linear-gradient(135deg,#0e2d7a,#F5C518)">R</div>
+          <div>
+            <div class="grad-info-name">Roberto Martínez</div>
+            <div class="grad-stars">★★★★★</div>
+          </div>
         </div>
-    </section>
+        <p class="grad-quote">Pasé mi examen de licencia a la primera. El curso te prepara perfectamente para la prueba teórica y práctica.</p>
+      </div>
+    </div>
+    <div class="graduates-cta reveal">
+      <p style="color:var(--gray-dark);margin-bottom:20px;font-size:1.05rem;">¿Quieres ser el próximo en graduarte?</p>
+      <a href="https://wa.me/529931436869?text=Hola!%20Quiero%20unirme%20a%20León%20Escuela%20de%20Manejo." target="_blank" class="btn btn-blue" rel="noopener">¡Únete a Nuestra Familia!</a>
+    </div>
+  </div>
+</section>
 
-    <!-- ==========================================
-         10. TESTIMONIOS
-    =========================================== -->
-    <section class="py-24 bg-slate-50 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up" data-reveal>
-                <h2 class="text-3xl font-black title-font text-slate-900 mb-3">Respaldo Comercial</h2>
-                <p class="text-slate-500 text-sm">Empresas e ingenieros que confían en nuestra capacidad de respuesta.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Testimonio 1 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="0">
-                    <div class="flex text-yellow-500 mb-3 text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"Excelente surtido de gases y capacitores. La implementación del bot para cotizaciones agiliza muchísimo nuestro trabajo en campo."</p>
-                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">RM</div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Roberto M.</p>
-                            <p class="text-[9px] text-slate-500 uppercase">Técnico Independiente</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonio 2 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="100" data-stagger="1">
-                    <div class="flex text-yellow-500 mb-3 text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"Adjudicamos la instalación de unidades Inverter para nuestras oficinas. Ejecución técnica impecable, respetando normas de seguridad."</p>
-                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">CS</div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Constructora SUR</p>
-                            <p class="text-[9px] text-slate-500 uppercase">Cliente Corporativo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonio 3 -->
-                <div class="corporate-card p-6" data-aos="fade-up" data-reveal data-aos-delay="200" data-stagger="2">
-                    <div class="flex text-yellow-500 mb-3 text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-5 leading-relaxed">"El inventario de tarjetas electrónicas y refacciones universales es robusto. Proveedor clave para paros de mantenimiento industrial."</p>
-                    <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                        <div class="w-8 h-8 bg-blue-50 rounded text-brand font-bold text-xs flex items-center justify-center border border-blue-100">CV</div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Ing. Carlos V.</p>
-                            <p class="text-[9px] text-slate-500 uppercase">Jefatura de Mantenimiento</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- CONSTANCIA -->
+<section id="constancia">
+  <div class="container">
+    <div class="cert-inner">
+      <div class="cert-content reveal-left">
+        <span class="section-tag" style="background:rgba(245,197,24,0.2);color:var(--gold)">Certificación Oficial</span>
+        <h2 class="section-title">Avalados por <span>AUTOMEX</span></h2>
+        <p class="cert-desc">Somos parte de la Asociación de Autoescuelas Profesionales de Formación Vial de México A.C., cumpliendo con los más altos estándares éticos y profesionales del país.</p>
+        <div class="cert-features">
+          <div class="cert-feat">
+            <div class="cert-feat-icon">🏅</div>
+            <div class="cert-feat-text"><strong>Registro Oficial:</strong> EC/MEx/46 — reconocido a nivel nacional</div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">📜</div>
+            <div class="cert-feat-text"><strong>Constancia avalada:</strong> por la única asociación nacional de autoescuelas</div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">👨‍💼</div>
+            <div class="cert-feat-text"><strong>Director certificado:</strong> Andres Antonio Flores Padilla</div>
+          </div>
+          <div class="cert-feat">
+            <div class="cert-feat-icon">✅</div>
+            <div class="cert-feat-text"><strong>Año de registro:</strong> 2025 — Vigente y activo</div>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="cert-image-wrap reveal-right">
+        <img src="constancia.jpg" alt="Constancia de Asociado AUTOMEX - León Escuela de Manejo" class="constancia-img">
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ==========================================
-         11. PREGUNTAS FRECUENTES
-    =========================================== -->
-    <section class="py-24 px-6 bg-white border-y border-slate-200">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-10" data-aos="fade-up" data-reveal>
-                <h2 class="text-2xl font-black title-font text-slate-900">Dudas Operativas</h2>
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-tag">Lo que Dicen</span>
+      <h2 class="section-title">Testimonios de <span>Alumnos</span></h2>
+      <p class="section-sub">La satisfacción de nuestros alumnos es nuestra mejor carta de presentación.</p>
+    </div>
+    <div class="testimonials-slider reveal">
+      <div class="testimonials-track" id="sliderTrack">
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Tomé clases aquí y fue la mejor experiencia. El instructor fue muy paciente conmigo. Ahora manejo con total confianza en la ciudad.</p>
+          <div class="test-author">
+            <div class="test-avatar" style="background:#0e2d7a">G</div>
+            <div>
+              <div class="test-name">Gabriela Ruiz</div>
+              <div class="test-date">Enero 2025</div>
             </div>
-
-            <div class="space-y-3" data-aos="fade-up" data-reveal>
-                <div class="corporate-card">
-                    <input type="checkbox" id="faq1" class="hidden faq-checkbox">
-                    <label for="faq1" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
-                        <span class="font-bold text-slate-800 text-sm">¿Cobertura logística en Tabasco?</span>
-                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
-                    </label>
-                    <div class="faq-answer bg-slate-50 px-4">
-                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Suministramos a diferentes municipios del estado sujeto a volumen de orden comercial. Consulte logística específica vía asesores.</p>
-                    </div>
-                </div>
-
-                <div class="corporate-card">
-                    <input type="checkbox" id="faq2" class="hidden faq-checkbox">
-                    <label for="faq2" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
-                        <span class="font-bold text-slate-800 text-sm">¿Políticas de Garantía en Minisplits?</span>
-                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
-                    </label>
-                    <div class="faq-answer bg-slate-50 px-4">
-                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Respaldados por lineamientos del fabricante. Generalmente incluye 1 año en componentes y hasta 5 a 10 años en el bloque del compresor.</p>
-                    </div>
-                </div>
-
-                <div class="corporate-card">
-                    <input type="checkbox" id="faq3" class="hidden faq-checkbox">
-                    <label for="faq3" class="faq-question cursor-pointer flex justify-between items-center p-4 bg-white hover:bg-slate-50 transition">
-                        <span class="font-bold text-slate-800 text-sm">¿Métodos de Facturación y Pago?</span>
-                        <i class="fas fa-chevron-down text-slate-400 transition-transform faq-icon text-xs"></i>
-                    </label>
-                    <div class="faq-answer bg-slate-50 px-4">
-                        <p class="py-3 text-xs text-slate-600 border-t border-slate-200 leading-relaxed">Se aceptan transferencias interbancarias, tarjetas de crédito institucionales y habilitamos líneas de crédito B2B tras evaluación financiera.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==========================================
-         12. CONTACTO Y MAPA
-    =========================================== -->
-    <section id="contacto" class="py-24 px-6 bg-slate-50 text-slate-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" data-reveal="right">
-                    <h2 class="text-3xl font-black title-font mb-6">Puntos de Venta</h2>
-                    
-                    <div class="space-y-4 mb-8">
-                        <div class="corporate-card p-5 flex items-start space-x-4">
-                            <div class="w-10 h-10 bg-blue-50 border border-blue-100 rounded text-brand flex items-center justify-center shrink-0">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-900 text-sm mb-1">Matriz: 18 de Marzo</p>
-                                <p class="text-xs text-slate-500">Av. Revolución #1310, Col. 18 de Marzo<br>CP 86140, Villahermosa, Tab.</p>
-                            </div>
-                        </div>
-
-                        <div class="corporate-card p-5 flex items-start space-x-4">
-                            <div class="w-10 h-10 bg-blue-50 border border-blue-100 rounded text-brand flex items-center justify-center shrink-0">
-                                <i class="fas fa-store-alt"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-900 text-sm mb-1">Sucursal Tamulté</p>
-                                <p class="text-xs text-slate-500">Manuel Doblado 209, Col. Tamulté<br>CP 86150, Villahermosa, Tab.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="corporate-card p-6 bg-white">
-                        <h4 class="font-bold text-[10px] uppercase tracking-widest text-slate-400 mb-3">Línea de Atención</h4>
-                        <a href="tel:+529931999269" class="text-xl font-black text-slate-900 hover:text-brand transition flex items-center gap-3 mb-2">
-                            <i class="fas fa-phone-alt text-brand text-sm"></i> 993 199 9269
-                        </a>
-                        <a href="/cdn-cgi/l/email-protection#77011219031604370302121a07051204165914181a" class="text-xs font-medium text-slate-500 hover:text-brand transition flex items-center gap-3"><i class="fas fa-envelope text-brand text-sm"></i> <span class="__cf_email__" data-cfemail="c2b4a7acb6a3b182b6b7a7afb2b0a7b1a3eca1adaf">[email&#160;protected]</span></a>
-                    </div>
-                </div>
-
-                <div class="corporate-card h-[400px] p-1.5" data-aos="fade-left" data-reveal="left">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.8562304859067!2d-92.94605908511674!3d17.98555818772392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ee7d88e0b677a1%3A0x6b1076b429d89284!2sTuEmpresa!5e0!3m2!1ses-419!2smx!4v1677654321098!5m2!1ses-419!2smx" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; border-radius: 0.5rem;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                </div>
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Excelente escuela. Mis hijos tomaron clases aquí y ambos aprobaron su examen de licencia a la primera. Muy profesionales.</p>
+          <div class="test-author">
+            <div class="test-avatar" style="background:#CC2200">P</div>
+            <div>
+              <div class="test-name">Patricia Méndez</div>
+              <div class="test-date">Febrero 2025</div>
             </div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==========================================
-         13. FOOTER
-    =========================================== -->
-    <footer class="bg-slate-900 py-12 px-6 text-white">
-        <div class="max-w-7xl mx-auto border-t border-slate-800 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-inner">
-                    <img src="imagen-removebg-preview.png" alt="Logo" class="h-8 object-contain">
-                </div>
-                
-                <div class="flex space-x-3">
-                    <a href="#" class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-brand transition text-xs"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/529931999269" class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-green-600 transition text-xs"><i class="fab fa-whatsapp"></i></a>
-                </div>
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Me daba mucho miedo manejar en carretera. Gracias al curso de manejo defensivo ahora me siento seguro en cualquier condición.</p>
+          <div class="test-author">
+            <div class="test-avatar" style="background:#059669">E</div>
+            <div>
+              <div class="test-name">Eduardo Morales</div>
+              <div class="test-date">Marzo 2025</div>
             </div>
-            
-            <!-- Links del footer -->
-            <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800 pt-8 text-center">
-                <div>
-                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Empresa</p>
-                    <ul class="space-y-2">
-                        <li><a href="#nosotros" class="text-[10px] text-slate-400 hover:text-white transition">Nosotros</a></li>
-                        <li><a href="#servicios" class="text-[10px] text-slate-400 hover:text-white transition">Servicios</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Productos</p>
-                    <ul class="space-y-2">
-                        <li><a href="#minisplits" class="text-[10px] text-slate-400 hover:text-white transition">Equipos</a></li>
-                        <li><a href="#catalogo" class="text-[10px] text-slate-400 hover:text-white transition">Refacciones</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Contacto</p>
-                    <ul class="space-y-2">
-                        <li><a href="tel:+529931999269" class="text-[10px] text-slate-400 hover:text-white transition">993 199 9269</a></li>
-                        <li><a href="https://wa.me/529931999269" class="text-[10px] text-slate-400 hover:text-white transition">WhatsApp</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Horarios</p>
-                    <ul class="space-y-2">
-                        <li><p class="text-[10px] text-slate-400">Lun–Sab 8am–7pm</p></li>
-                        <li><p class="text-[10px] text-slate-400">Urgencias 24h</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-slate-800 text-center flex flex-col items-center">
-                <p class="text-slate-500 text-[9px] font-bold uppercase tracking-widest mb-1">
-                    © 2026 Tu Empresa. División Climatización. Todos los derechos reservados.
-                </p>
-                <p class="text-slate-600 text-[8px] uppercase tracking-widest flex items-center gap-1">
-                    Desarrollo Tecnológico por <span class="text-slate-400 font-bold">Aryse AI</span>
-                </p>
-            </div>
+          </div>
         </div>
-    </footer>
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">El mejor dinero invertido de mi vida. Aprendí a manejar en tiempo récord y con la seguridad de una escuela certificada. ¡Gracias León!</p>
+          <div class="test-author">
+            <div class="test-avatar" style="background:#7c3aed">V</div>
+            <div>
+              <div class="test-name">Valeria Castro</div>
+              <div class="test-date">Marzo 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Súper recomendada. Ambiente tranquilo, instructores certificados y un precio muy justo. No duden en inscribirse aquí.</p>
+          <div class="test-author">
+            <div class="test-avatar" style="background:#d97706">J</div>
+            <div>
+              <div class="test-name">Jorge Villanueva</div>
+              <div class="test-date">Febrero 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </div>
+</section>
 
-    <!-- AOS Script -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-    // ── AOS init ──────────────────────────────────
-    AOS.init({ once: true, mirror: false, offset: 60, duration: 650, easing: 'ease-out-cubic' });
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="cta-title">¿Listo para <span>Aprender a Manejar</span>?</h2>
+      <p class="cta-sub">Agenda tu primera clase hoy mismo. Sin compromisos, sin rodeos — solo tú y el volante.</p>
+      <div style="margin-bottom:32px">
+        <a href="tel:9931436869" class="cta-phone">
+          <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          9931-436-869
+        </a>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://wa.me/529931436869?text=Hola!%20Quiero%20agendar%20mi%20clase%20de%20manejo%20en%20León%20Escuela%20de%20Manejo." target="_blank" class="btn btn-whatsapp-big btn" rel="noopener">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar por WhatsApp
+        </a>
+        <a href="tel:9931436869" class="btn btn-outline">Llamar Ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // ── PROGRESS BAR ──────────────────────────────
-    const progressBar = document.getElementById('progress-bar');
-    function updateProgress() {
-        const scrolled = window.scrollY;
-        const total    = document.body.scrollHeight - window.innerHeight;
-        if (progressBar) progressBar.style.width = (scrolled / total * 100) + '%';
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="León Escuela de Manejo" style="height:70px;border-radius:12px;margin-bottom:16px;">
+        <div class="footer-brand-name">León Escuela de Manejo</div>
+        <div class="footer-brand-sub">Educando para Evitar Accidentes</div>
+        <p class="footer-brand-desc">Escuela certificada por AUTOMEX, comprometida con la formación vial profesional y responsable en México.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#servicios">Nuestros Cursos</a></li>
+          <li><a href="#nosotros">¿Por Qué León?</a></li>
+          <li><a href="#egresados">Egresados</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cursos</h4>
+        <ul>
+          <li><a href="#servicios">Curso Básico</a></li>
+          <li><a href="#servicios">Manejo Defensivo</a></li>
+          <li><a href="#servicios">Preparación Licencia</a></li>
+          <li><a href="#servicios">Manejo Nocturno</a></li>
+          <li><a href="#servicios">Curso para Damas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/529931436869" target="_blank" rel="noopener">9931 436 869</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <a href="tel:9931436869">9931 436 869</a>
+        </div>
+        <div style="margin-top:16px;padding:10px 14px;background:rgba(245,197,24,0.1);border-radius:10px;border:1px solid rgba(245,197,24,0.3)">
+          <div style="color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Certificación AUTOMEX</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:.8rem;">Registro EC/MEx/46</div>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <p>© 2025 León Escuela de Manejo. Todos los derechos reservados.</p>
+      <p class="footer-reg">Registro AUTOMEX: EC/MEx/46 · Director: Andres Antonio Flores Padilla</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 800);
+});
+
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== HAMBURGER =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ===== INTERSECTION OBSERVER (reveal animations) =====
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => io.observe(el));
+
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target, duration = 1800) {
+  const isDecimal = target % 1 !== 0;
+  let startTime = null;
+  const step = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * target;
+    el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + (progress >= 1 && !isDecimal ? '+' : '');
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = isDecimal ? target.toFixed(1) : target + '+';
+  };
+  requestAnimationFrame(step);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      if (!isNaN(target)) animateCounter(el, target);
+      counterObs.unobserve(el);
     }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
-    // ── NAVBAR SCROLL ─────────────────────────────
-    const nav = document.getElementById('navbar');
-    function updateNav() {
-        nav.classList.toggle('shadow-md', window.scrollY > 30);
-    }
+// ===== TESTIMONIALS SLIDER =====
+const track = document.getElementById('sliderTrack');
+const cards = track.querySelectorAll('.testimonial-card');
+const dotsContainer = document.getElementById('sliderDots');
+let current = 0;
+let autoSlide;
 
-    // ── REVEAL OBSERVER ───────────────────────────
-    const revealEls = document.querySelectorAll('[data-reveal]');
-    const revealObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (!e.isIntersecting) return;
-            const el   = e.target;
-            const dir  = el.dataset.reveal;
-            const del  = el.dataset.stagger ? parseFloat(el.dataset.stagger) * 110 : 0;
-            el.style.transitionDelay = del + 'ms';
-            el.classList.add('reveal', dir === 'left' ? 'from-left' : dir === 'right' ? 'from-right' : '', 'is-visible');
-            revealObs.unobserve(el);
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => {
-        el.classList.add('reveal', el.dataset.reveal === 'left' ? 'from-left' : el.dataset.reveal === 'right' ? 'from-right' : '');
-        revealObs.observe(el);
-    });
+// Create dots
+cards.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Testimonio ${i+1}`);
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
 
-    // ── DOT NAV + SCROLL SPY ──────────────────────
-    const sections   = document.querySelectorAll('section[id]');
-    const dotLinks   = document.querySelectorAll('.dot-link');
-    const navAnchors = document.querySelectorAll('.nav-link');
-    function updateSpy() {
-        let current = '';
-        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
-        dotLinks.forEach(d => d.classList.toggle('active', d.dataset.section === current));
-        navAnchors.forEach(a => a.classList.toggle('text-brand', a.getAttribute('href') === '#' + current));
-    }
+function getCardWidth() {
+  const card = cards[0];
+  return card.offsetWidth + parseInt(getComputedStyle(track).gap || 28);
+}
 
-    // ── COUNTER ANIMATION ─────────────────────────
-    let countersRun = false;
-    function runCounters() {
-        if (countersRun) return;
-        const statEl = document.querySelector('.stat-counter');
-        if (!statEl) return;
-        const rect = statEl.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            countersRun = true;
-            document.querySelectorAll('.stat-counter').forEach(el => {
-                const target = parseInt(el.dataset.target) || 0;
-                const prefix = el.dataset.prefix || '';
-                const suffix = el.dataset.suffix || '';
-                let val = 0, step = target / (1600 / 16);
-                const t = setInterval(() => {
-                    val = Math.min(val + step, target);
-                    const disp = target >= 1000 ? (val >= 1000 ? Math.round(val/1000)+'k' : Math.round(val)) : Math.round(val);
-                    el.textContent = prefix + disp + suffix;
-                    if (val >= target) clearInterval(t);
-                }, 16);
-            });
-        }
-    }
+function goTo(index) {
+  current = index;
+  const offset = getCardWidth() * index;
+  track.style.transform = `translateX(-${offset}px)`;
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+}
 
-    // ── MOBILE PARALLAX SUAVE (scroll) ────────────
-    let ticking = false;
-    function onScroll() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                updateProgress();
-                updateNav();
-                updateSpy();
-                runCounters();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateNav(); updateSpy();
+function nextSlide() {
+  const maxIndex = Math.max(0, cards.length - Math.floor(track.parentElement.offsetWidth / getCardWidth()));
+  goTo(current >= maxIndex ? 0 : current + 1);
+}
 
-    // ── HAMBURGER / DRAWER ────────────────────────
-    const menuBtn  = document.getElementById('menu-btn');
-    const mobMenu  = document.getElementById('mobile-menu');
-    const backdrop = document.getElementById('mob-backdrop');
-    const closeBtn = document.getElementById('menu-close');
-    const mobLinks = document.querySelectorAll('.mob-link');
+function startAuto() { autoSlide = setInterval(nextSlide, 4000); }
+function stopAuto() { clearInterval(autoSlide); }
 
-    function openNav()  { mobMenu.classList.add('is-open'); menuBtn.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeNav() { mobMenu.classList.remove('is-open'); menuBtn.classList.remove('open'); document.body.style.overflow = ''; }
+startAuto();
+track.addEventListener('mouseenter', stopAuto);
+track.addEventListener('mouseleave', startAuto);
 
-    menuBtn.addEventListener('click', () => mobMenu.classList.contains('is-open') ? closeNav() : openNav());
-    closeBtn.addEventListener('click', closeNav);
-    backdrop.addEventListener('click', closeNav);
-    mobLinks.forEach(l => l.addEventListener('click', closeNav));
-    document.addEventListener('keydown', e => e.key === 'Escape' && closeNav());
+// Touch/swipe support
+let touchStartX = 0;
+track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+track.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : goTo(Math.max(0, current - 1));
+  startAuto();
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ===== ACTIVE NAV LINK =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+});
 </script>
-    <!-- DOT NAV lateral (solo desktop) -->
-    <nav id="dot-nav" class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
-        <a href="#inicio"     data-section="inicio"     class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Inicio"></a>
-        <a href="#nosotros"   data-section="nosotros"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Nosotros"></a>
-        <a href="#servicios"  data-section="servicios"  class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Servicios"></a>
-        <a href="#minisplits" data-section="minisplits" class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Equipos"></a>
-        <a href="#catalogo"   data-section="catalogo"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Catálogo"></a>
-        <a href="#contacto"   data-section="contacto"   class="dot-link w-2 h-2 rounded-full bg-slate-300 transition-all duration-300 hover:bg-brand" title="Contacto"></a>
-    </nav>
-
-    <!-- WhatsApp Flotante -->
-    <a id="wa-float" href="https://wa.me/529931999269" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 </body>
 </html>
